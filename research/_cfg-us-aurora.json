@@ -1,0 +1,17 @@
+{
+ "legalCountry": "France", "registerLabel": "SIREN", "vatLabel": "VAT", "jurisdiction": "France",
+ "supervisoryAuthority": "Commission nationale de l'informatique et des libertés (CNIL)",
+ "supervisoryAuthorityUrl": "https://www.cnil.fr",
+ "consentMode": "none", "year": 2026, "founded": "2026",
+ "volumes": "/private/tmp/claude-501/-Users-mottalib/7bccc98c-ef3e-4a30-80e5-e0d5eaa9394d/scratchpad/us-aurora-volumes.txt",
+ "folder": "us-aurora", "outDir": "a-publier/Mottalib-10M",
+ "url": "https://us-aurora.example",
+ "locales": ["en"], "names": {"en": "Aurora Tonight"}, "langTags": {"en": "en-US"}, "ogLocales": {"en": "en_US"},
+ "localeTag": "en-US", "currency": "USD", "flag": "us", "symbol": "Kp", "accent": "#1F6F4A",
+ "authorRole": {"en": "À RÉÉCRIRE"}, "authorDesc": {"en": "À RÉÉCRIRE"},
+ "email": "contact@us-aurora.example", "indexnow": "b7d41e9a2c8f4a06b3e5d1c9f0a27e84",
+ "shortName": "Aurora Tonight", "description": "À RÉÉCRIRE", "port": 4443,
+ "og": [{"file": "og-en.png", "title": "Northern lights tonight\nyes, maybe or no for your town", "subtitle": "Kp · OVATION · clouds · dark hours", "badge": "Live space weather + NWS clouds", "brand": "Aurora Tonight"}],
+ "lastUpdated": "2026-10-12",
+ "knowsAbout": {"en": ["Aurora forecasting", "Planetary K-index", "OVATION aurora model", "Geomagnetic latitude", "Astronomical twilight", "Night sky photography"]}
+}
