@@ -11,7 +11,7 @@ export default defineCity({
   region: 'montana',
   slug: 'billings',
   title: 'Northern Lights Billings 2026: Tonight’s Chance, Kp Needed',
-  description: `Northern lights in Billings in 2026: tonight's yes, maybe or no, Kp ${K.kp(f.need)} needed at ${K.num(f.mlat, 1)}° magnetic latitude, the Rims and the clearest months.`,
+  description: `Northern lights in Billings in 2026: tonight's yes, maybe or no, Kp ${K.kp(f.need)} needed at ${K.num(f.mlat, 1)}° magnetic latitude, the Rimrocks view and the clearest months.`,
   intro: 'Montana’s largest city sits under the Rimrocks; the plains to the north give it a wide sky once you climb out of the valley.',
   resume: `From Billings the northern lights need a planetary Kp of about ${K.kp(f.need)}, ${f.g ? `a ${K.gName(f.g)} storm` : 'below storm level'} on the NOAA scale. In the AACGM model the city sits at ${K.num(f.mlat, 1)} degrees magnetic latitude, a little less favorable than the Hi-Line towns, where Havre needs about ${K.kp(hv.need)}, but better than cities of the same latitude farther east. The aurora reaches the zenith around Kp ${K.kp(f.overhead)}. Billings has two assets: the sandstone Rimrocks that rise above the north side of town give an elevated viewpoint over the plains, and the air is dry, with a NASA POWER cloud amount of ${K.num(ce.clearest.cloud, 0)}% in ${ce.clearest.name}. The cloudiest month is ${ce.cloudiest.name}, at ${K.num(ce.cloudiest.cloud, 0)}%. Counting clear dark hours, the product of night length and clear sky, ${K.listOf(best.map((b) => b.name))} come first.`,
   faqs: [
