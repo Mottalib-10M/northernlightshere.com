@@ -29,5 +29,4 @@ export default defineCity({
 <h2>Light through the year</h2>
 <p>In mid-December Anchorage gets ${h.num(m[11].hours, 1)} hours of full darkness, from ${m[11].start} to ${m[11].end}. By the spring equinox that falls to ${h.num(m[2].hours, 1)} hours, and from ${h.noDarkMonths('alaska', 'anchorage')[0]} onward the sky never fully darkens. September brings the dark back with mild temperatures, which makes it the comfortable choice for a first try. Many residents first see the aurora on a drive home from somewhere else, which says something about where the dark sky starts. For a comparison with the Interior, see the ${h.a('city:alaska/fairbanks', 'Fairbanks page')}; for the rest of the state, the ${h.a('region:alaska', 'Alaska page')}.</p>`,
   related: ['region:alaska', 'city:alaska/fairbanks', 'city:alaska/juneau', 'aurora-forecast', 'photograph-northern-lights-phone'],
-  extraSources: [{ name: 'Alaska Department of Natural Resources, Chugach State Park', url: 'https://dnr.alaska.gov/parks/units/chugach/' }],
 });

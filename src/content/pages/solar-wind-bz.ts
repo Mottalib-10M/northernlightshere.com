@@ -21,7 +21,7 @@ export default definePage({
   nav: 'Solar wind and Bz',
   card: 'Speed, density and a southward Bz: reading the solar wind an hour before the aurora',
   title: 'Solar Wind and Bz 2026: Reading the Last Hour Before Aurora',
-  description: `Solar wind and Bz in 2026: the L1 monitors sit ${l1Text} upstream, giving about ${lead(fast1)} to ${lead(slow)} minutes of warning. Why a southward Bz matters.`,
+  description: `Solar wind and Bz in 2026: the L1 monitors sit ${l1Text} upstream, giving about ${lead(fast1)} to ${lead(slow)} minutes of warning. Why a southward Bz matters for aurora.`,
   h1: 'Solar wind speed and Bz: the hour before the aurora',
   intro: 'Kp tells you what the last three hours were like. The solar wind tells you what is about to arrive.',
   resume: `The solar wind is the stream of charged particles and magnetic field that flows constantly from the Sun, and two of its numbers decide most aurora nights: its speed and the north-south direction of its magnetic field, called Bz. SWPC explains that energy pours into Earth's magnetosphere when the wind is fast and its field points south, opposite to Earth's own; sustained southward Bz over several hours is what builds a geomagnetic storm. Spacecraft near the L1 point, about ${l1Text} toward the Sun, measure the wind before it hits. At ${slow} km/s, the speed SWPC gives for the ordinary slow wind, that is about ${lead(slow)} minutes of warning; at ${fast1} km/s, the top of SWPC's range for coronal hole streams, about ${lead(fast1)} minutes. The clouds of coronal mass ejections travel faster still, and the fastest reach Earth in 15 to 18 hours after leaving the Sun. Kp and the OVATION map react only once the energy has arrived.`,
