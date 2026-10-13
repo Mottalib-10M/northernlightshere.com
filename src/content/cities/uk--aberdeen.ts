@@ -13,7 +13,7 @@ export default defineCity({
   region: 'uk',
   slug: 'aberdeen',
   title: 'Northern Lights Aberdeen 2026: Tonight on the North Sea',
-  description: `Northern lights in Aberdeen in 2026: tonight's yes, maybe or no, the Kp ${K.kp(f.need)} storm needed at ${K.num(f.mlat, 1)}° magnetic latitude, the coast north to Fraserburgh and the haar.`,
+  description: `Northern lights in Aberdeen in 2026: tonight's yes, maybe or no, the Kp ${K.kp(f.need)} storm needed at ${K.num(f.mlat, 1)}° magnetic latitude, the coast to Fraserburgh and the haar.`,
   intro: 'Aberdeen looks east over the North Sea, so its best aurora views come from the stretch of coast that turns to face north.',
   resume: `Aberdeen needs ${K.needText(f)}, for the northern lights. The Granite City sits at ${K.num(f.mlat, 1)} degrees magnetic latitude in the AACGM model, only ${K.num(iv.mlat - f.mlat, 1)} degrees below Inverness, and that small step lifts the threshold from Inverness's Kp ${K.kp(iv.need)} to about Kp ${K.kp(f.need)}, enough to cross from the G1 to the ${K.gName(f.g)} level. In this site's model the oval edge is overhead at the same Kp, so a qualifying storm tends to rise well above the horizon. There is no astronomical darkness from ${nd[0]} to ${nd[nd.length - 1]}, and only ${K.num(m[7].hours, 1)} hours on August 15. December 15 gives ${K.num(m[11].hours, 1)} hours, from ${m[11].start} to ${m[11].end}. NASA POWER cloud amounts range from ${K.num(ce.clearest.cloud, 0)}% in ${ce.clearest.name} to ${K.num(ce.cloudiest.cloud, 0)}% in ${ce.cloudiest.name}, so the best months on clear dark hours are ${K.listOf(best.map((b) => b.name))}. The tool reads tonight's SWPC Kp and MET Norway cloud cover for Aberdeen.`,
   faqs: [
