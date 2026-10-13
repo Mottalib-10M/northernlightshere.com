@@ -1,5 +1,5 @@
 /** Configuration centrale du site (générée par new-site.py). */
-export const SITE_URL = "https://us-aurora.example";
+export const SITE_URL = "https://northernlightshere.com";
 export const SITE_NAMES: Record<string, string> = {"en": "Aurora Tonight"};
 export const LANG_TAGS: Record<string, string> = {"en": "en-US"};
 export const OG_LOCALES: Record<string, string> = {"en": "en_US"};
@@ -16,7 +16,7 @@ export const AUTHOR_DESC: Record<string, string> = {"en": "Radif Partners builds
  *  themes reellement traites par le site, pas une liste de mots-cles : un sujet
  *  declare ici sans page qui le couvre est une declaration fausse. */
 export const KNOWS_ABOUT: Record<string, string[]> = {"en": ["Aurora forecasting", "Planetary K-index", "OVATION aurora model", "Geomagnetic latitude", "Astronomical twilight", "Night sky photography"]};
-export const CONTACT_EMAIL = "contact@us-aurora.example";
+export const CONTACT_EMAIL = "contact@northernlightshere.com";
 export const THEME_COLOR = '#1F6F4A';
 export const LOGO_SYMBOL = 'Kp';
 export const BING_VERIFY_CODE = '';
