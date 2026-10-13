@@ -16,7 +16,7 @@ const pages = only.length ? PAGES.filter((p) => only.includes(p.id)) : PAGES;
 const regions = only.length ? REGION_PAGES.filter((p) => only.includes(regionId(p.slug))) : REGION_PAGES;
 const cities = only.length ? CITY_PAGES.filter((p) => only.includes(cityId(p.region, p.slug))) : CITY_PAGES;
 const words = (s: string) => s.replace(/<!--[\s\S]*?-->/g, ' ').replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length;
-const BANNED = [/—/, /–/, /&mdash;/, /&ndash;/, /it[’']s important to note/i, /dive into/i, /whether you[’']re/i, /in today[’']s world/i, /\bMoreover\b/, /\bAdditionally\b/, /\bFurthermore\b/, /navigat(e|ing) the/i, /\bdelve\b/i, /taxineo/i, /\bINSEAD\b/, /\bMines\b/, /linkedin/i, /\bgame[- ]changer\b/i, /\bunlock\b/i, /breathtaking/i, /\bmagical\b/i, /once[- ]in[- ]a[- ]lifetime/i, /bucket list/i];
+const BANNED = [/\u2014/, /\u2013/, /&m[d]ash;/, /&n[d]ash;/, /it[’']s important to note/i, /dive into/i, /whether you[’']re/i, /in today[’']s world/i, /\bMoreover\b/, /\bAdditionally\b/, /\bFurthermore\b/, /navigat(e|ing) the/i, /\bdelve\b/i, /taxineo/i, /\bINSEAD\b/, /\bMines\b/, /linkedin/i, /\bgame[- ]changer\b/i, /\bunlock\b/i, /breathtaking/i, /\bmagical\b/i, /once[- ]in[- ]a[- ]lifetime/i, /bucket list/i];
 const allQ = [...HOME.faqs.map((f) => f.q), ...PAGES.flatMap((p) => p.faqs.map((f) => f.q)), ...REGION_PAGES.flatMap((p) => p.faqs.map((f) => f.q)), ...CITY_PAGES.flatMap((p) => p.faqs.map((f) => f.q))];
 const allTitles = [HOME.title, ...PAGES.map((p) => p.title), ...REGION_PAGES.map((p) => p.title), ...CITY_PAGES.map((p) => p.title)];
 const allDesc = [HOME.description, ...PAGES.map((p) => p.description), ...REGION_PAGES.map((p) => p.description), ...CITY_PAGES.map((p) => p.description)];
