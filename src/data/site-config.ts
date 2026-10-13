@@ -27,7 +27,7 @@ export const GOOGLE_VERIFY_CODE = '';
 export const CONSENT_MODE: 'opt-in' | 'notice' | 'none' = 'none';
 export const GA4_ID = '';
 /** Projet Microsoft Clarity (compte amradif), chargé sans cookie. Vide = aucune mesure. */
-export const CLARITY_ID = '';
+export const CLARITY_ID = 'yx9r4zqshf';
 export const INDEXNOW_KEY = 'b7d41e9a2c8f4a06b3e5d1c9f0a27e84';
 
 /* ------------------------------------------------------------------------- *
