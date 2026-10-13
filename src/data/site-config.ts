@@ -8,7 +8,7 @@ export const CURRENCY = 'USD';
 export const YEAR = 2026;
 /** Année de création du site — signal d'ancienneté (RECETTE §8.0). */
 export const SITE_FOUNDED = '2026';
-export const LAST_UPDATED = '2026-10-12';
+export const LAST_UPDATED = '2026-10-13';
 export const AUTHOR_NAME = 'Radif Partners';
 export const AUTHOR_ROLE: Record<string, string> = {"en": "Publisher of a per-town northern lights forecast built on SWPC, NWS and astronomy data"};
 export const AUTHOR_DESC: Record<string, string> = {"en": "Radif Partners builds Aurora Tonight on public feeds you can open yourself: the Kp forecast and OVATION grid of the NOAA Space Weather Prediction Center, the hourly sky cover of the National Weather Service, and the position of the Sun and Moon computed for your coordinates. Every town gets its AACGM magnetic latitude and the Kp it needs, and every rule that turns those numbers into a yes, maybe or no is written on the method page."};
@@ -44,11 +44,11 @@ export interface LegalIdentity {
   supervisoryAuthority: string; supervisoryAuthorityUrl: string; hosting: LegalHosting;
 }
 export const LEGAL: LegalIdentity = {
-  entityName: '',            // raison sociale ou nom commercial exploité
-  legalForm: '',             // ex. entreprise individuelle, SASU, GmbH, eenmanszaak
-  street: '',
-  postalCode: '',
-  city: '',
+  entityName: 'Radif Partners',  // éditeur de tous les sites du portefeuille (RECETTE §8)
+  legalForm: '',  // vide : comme sur les autres sites du portefeuille
+  street: '49 rue du Ressort',
+  postalCode: '63000',
+  city: 'Clermont-Ferrand',
   country: "France",
   phone: '',                 // ligne de contact publiée
   registerLabel: "SIREN",
@@ -58,11 +58,11 @@ export const LEGAL: LegalIdentity = {
   jurisdiction: "France",
   supervisoryAuthority: "Commission nationale de l'informatique et des libertés (CNIL)",
   supervisoryAuthorityUrl: "https://www.cnil.fr",
-  hosting: { name: '', address: '', phone: '', url: '' },
+  hosting: { name: 'GitHub, Inc. (GitHub Pages)', address: '88 Colin P Kelly Jr Street, San Francisco, CA 94107, United States', phone: '', url: 'https://pages.github.com' },
 };
 
 /** Champs sans lesquels le site ne doit pas être mis en ligne. */
-export const LEGAL_REQUIRED: Array<keyof LegalIdentity> = ['entityName', 'legalForm', 'street', 'postalCode', 'city'];
+export const LEGAL_REQUIRED: Array<keyof LegalIdentity> = ['entityName', 'street', 'postalCode', 'city'];
 
 /** Profils publics de l'auteur (schema.org sameAs). Laisser vide si aucun. */
 export const AUTHOR_SAME_AS: string[] = [];
