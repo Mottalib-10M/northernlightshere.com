@@ -11,7 +11,7 @@ export default defineCity({
   region: 'new-york',
   slug: 'buffalo',
   title: 'Northern Lights Buffalo 2026: Tonight’s Chance, Kp Needed',
-  description: `Northern lights in Buffalo in 2026: tonight's yes, maybe or no, Kp ${K.kp(f.need)} needed at ${K.num(f.mlat, 1)}° magnetic latitude, lake-effect clouds and the autumn window.`,
+  description: `Northern lights in Buffalo in 2026: tonight's yes, maybe or no, Kp ${K.kp(f.need)} needed at ${K.num(f.mlat, 1)}° magnetic latitude, lake-effect clouds and the autumn storm window.`,
   intro: 'Buffalo looks north over Lake Ontario’s basin toward Toronto; its real opponent on storm nights is Lake Erie’s cloud.',
   resume: `From Buffalo the northern lights need a planetary Kp of about ${K.kp(f.need)}, a ${K.gName(f.g)} storm on the NOAA scale. The city lies at ${K.num(f.mlat, 1)} degrees magnetic latitude in the AACGM model, close to Toronto across the lake at ${K.num(to.mlat, 1)}, and the aurora would reach overhead around Kp ${K.kp(f.overhead)}. Buffalo's geography gives it a northern view over water toward Lake Ontario, but its climate fights back: the city sits at the downwind end of Lake Erie, and the NASA POWER cloud amount reaches ${K.num(ce.cloudiest.cloud, 0)}% in ${ce.cloudiest.name}, one of the cloudiest winters among the cities on this site. ${ce.clearest.name} is the clearest month, at ${K.num(ce.clearest.cloud, 0)}%. By clear dark hours, ${K.listOf(best.map((b) => b.name))} come first, so the storms that matter most for Buffalo are those of late summer and autumn.`,
   faqs: [

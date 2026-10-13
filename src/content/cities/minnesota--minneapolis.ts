@@ -13,7 +13,7 @@ export default defineCity({
   region: 'minnesota',
   slug: 'minneapolis',
   title: 'Northern Lights Minneapolis 2026: Kp Needed and Tonight',
-  description: `Northern lights in Minneapolis in 2026: tonight's yes, maybe or no for the Twin Cities, a Kp ${K.kp(f.need)} storm needed at ${K.num(f.mlat, 1)}° magnetic latitude, and the darkest drives.`,
+  description: `Northern lights in Minneapolis in 2026: tonight's yes, maybe or no for the Twin Cities, a Kp ${K.kp(f.need)} storm needed at ${K.num(f.mlat, 1)}° magnetic latitude, and the dark drives.`,
   intro: 'The Twin Cities sit on the boundary between a moderate storm and a minor one, and the metro glow decides the rest.',
   resume: `From Minneapolis and St. Paul you need a planetary Kp of about ${K.kp(f.need)} to see the northern lights, a ${K.gName(f.g)} storm on the NOAA scale, right at the boundary with G1. The metro lies at ${K.num(f.mlat, 1)} degrees magnetic latitude in the AACGM model, and in this site's method the edge of the oval reaches overhead at about the same Kp, ${K.kp(f.overhead)}. An hour north the threshold drops: St. Cloud needs Kp ${K.kp(sc.need)} and Duluth ${K.kp(du.need)}, while Rochester, to the south, needs ${K.kp(ro.need)}. Full darkness lasts ${K.num(m[11].hours, 1)} hours on December 15 and ${K.num(m[5].hours, 1)} hours on June 15. NASA POWER cloud averages for the metro go from ${K.num(ce.clearest.cloud, 0)}% in ${ce.clearest.name} to ${K.num(ce.cloudiest.cloud, 0)}% in ${ce.cloudiest.name}, and ${best[0].name}, ${best[1].name} and ${best[2].name} give the most clear dark hours. The tool below checks the forecast hour by hour for the Twin Cities against National Weather Service sky cover.`,
   faqs: [

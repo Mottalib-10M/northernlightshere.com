@@ -13,7 +13,7 @@ const mDm = K.monthly('iowa', 'des-moines');
 export default defineRegion({
   slug: 'iowa',
   title: 'Northern Lights Iowa 2026: Tonight’s Chance, Kp by Town',
-  description: `Northern lights in Iowa in 2026: from Kp ${K.kp(mc.need)} in Mason City to Kp ${K.kp(dm.need)} in Des Moines, the storm each town needs, and tonight's verdict hour by hour.`,
+  description: `Northern lights in Iowa in 2026: from Kp ${K.kp(mc.need)} in Mason City to Kp ${K.kp(dm.need)} in Des Moines, the storm each Iowa town needs, and tonight's verdict hour by hour.`,
   intro: 'Iowa needs a strong storm, but its flat, dark farmland gives that storm one of the cleanest northern horizons in the Midwest.',
   resume: `Every Iowa town needs a geomagnetic storm to see the northern lights, and the whole state fits in a narrow band of thresholds. Mason City, near the Minnesota line, sits at ${K.num(mc.mlat, 1)} degrees magnetic latitude in the AACGM model and needs about Kp ${K.kp(mc.need)}, a ${K.gName(mc.g)} storm on the NOAA scale. Dubuque needs Kp ${K.kp(db.need)}, Cedar Rapids Kp ${K.kp(cr.need)}, and Des Moines about Kp ${K.kp(dm.need)}, a ${K.gName(dm.g)} storm. The boundary between those two storm levels runs right across the state. Sioux City, on the Missouri, needs Kp ${K.kp(sx.need)}, more than Dubuque at the same latitude, because magnetic latitude falls toward the west. For Des Moines, NASA POWER cloud averages run from ${K.num(ceDm.clearest.cloud, 0)}% in ${ceDm.clearest.name} to ${K.num(ceDm.cloudiest.cloud, 0)}% in ${ceDm.cloudiest.name}, and ${bestDm[0].name}, ${bestDm[1].name} and ${bestDm[2].name} give the most clear dark hours. The tool opens on Des Moines; type any Iowa town or ZIP code to see tonight's verdict there.`,
   faqs: [

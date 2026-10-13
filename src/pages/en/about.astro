@@ -7,7 +7,7 @@ import { TOWNS } from '../../lib/data';
 import { profilePageSchema, breadcrumbSchema } from '../../lib/seo';
 const lang = 'en';
 const path = route('about', lang);
-const title = 'Aurora Tonight 2026: who builds it and why it answers per town';
+const title = 'Aurora Tonight 2026: who builds it, why it answers per town';
 const description = 'Aurora Tonight is published by Radif Partners: a free 2026 northern lights forecast that answers yes, maybe or no per town from SWPC, NWS and astronomy, no app.';
 ---
 <PageLayout title={title} description={description} lang={lang} jsonLd={[profilePageSchema({ path, lang }), breadcrumbSchema([{ name: 'Home', path: route('home', lang) }, { name: 'About', path }])]} breadcrumbs={[{ label: 'About' }]}>

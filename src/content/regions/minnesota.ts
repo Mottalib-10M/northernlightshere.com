@@ -13,8 +13,8 @@ const lowest = [...lower48].sort((a, b) => (a.need ?? 99) - (b.need ?? 99))[0];
 
 export default defineRegion({
   slug: 'minnesota',
-  title: 'Northern Lights Minnesota 2026: Kp Needed, Border to Twin Cities',
-  description: `Northern lights in Minnesota in 2026: Kp ${K.kp(fa.need)} at International Falls, Kp ${K.kp(mp.need)} in Minneapolis, Kp ${K.kp(ro.need)} in Rochester, and tonight's verdict for your town.`,
+  title: 'Northern Lights Minnesota 2026: Kp, Border to Twin Cities',
+  description: `Northern lights in Minnesota in 2026: Kp ${K.kp(fa.need)} at International Falls, Kp ${K.kp(mp.need)} in Minneapolis, Kp ${K.kp(ro.need)} in Rochester, and tonight's verdict for your own town.`,
   intro: 'Along the Ontario border Minnesota needs only an active night, while the Twin Cities wait for a real storm.',
   resume: `Minnesota reaches farther toward the auroral oval than any other part of the lower 48 covered here. International Falls, on the Rainy River facing Ontario, sits at ${K.num(fa.mlat, 1)} degrees magnetic latitude in the AACGM model and needs only about Kp ${K.kp(fa.need)}, an unsettled to active night that falls short of storm level on the NOAA scale; ${lowest.town.slug === 'international-falls' ? 'no other town in the lower 48 on this site needs less' : `only ${lowest.label} needs less`}. Ely, at the edge of the Boundary Waters, needs Kp ${K.kp(el.need)}, and Duluth Kp ${K.kp(du.need)}, a ${K.gName(du.g)} storm. Farther south the bar rises: Minneapolis needs Kp ${K.kp(mp.need)}, a ${K.gName(mp.g)} storm, and Rochester Kp ${K.kp(ro.need)}. For International Falls, NASA POWER cloud averages swing from ${K.num(ceFa.clearest.cloud, 0)}% in ${ceFa.clearest.name} to ${K.num(ceFa.cloudiest.cloud, 0)}% in ${ceFa.cloudiest.name}, and the months with the most clear dark hours are ${best[0].name} and ${best[1].name}, when long nights meet the dry air of an Arctic high. The tool opens on Minneapolis; type any Minnesota town or ZIP code to get its own verdict.`,
   faqs: [
