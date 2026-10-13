@@ -10,8 +10,8 @@ export const YEAR = 2026;
 export const SITE_FOUNDED = '2026';
 export const LAST_UPDATED = '2026-10-12';
 export const AUTHOR_NAME = 'Radif Partners';
-export const AUTHOR_ROLE: Record<string, string> = {"en": "À RÉÉCRIRE"};
-export const AUTHOR_DESC: Record<string, string> = {"en": "À RÉÉCRIRE"};
+export const AUTHOR_ROLE: Record<string, string> = {"en": "Publisher of a per-town northern lights forecast built on SWPC, NWS and astronomy data"};
+export const AUTHOR_DESC: Record<string, string> = {"en": "Radif Partners builds Aurora Tonight on public feeds you can open yourself: the Kp forecast and OVATION grid of the NOAA Space Weather Prediction Center, the hourly sky cover of the National Weather Service, and the position of the Sun and Moon computed for your coordinates. Every town gets its AACGM magnetic latitude and the Kp it needs, and every rule that turns those numbers into a yes, maybe or no is written on the method page."};
 /** Sujets sur lesquels l'editeur est competent (schema.org knowsAbout). Ce sont les
  *  themes reellement traites par le site, pas une liste de mots-cles : un sujet
  *  declare ici sans page qui le couvre est une declaration fausse. */

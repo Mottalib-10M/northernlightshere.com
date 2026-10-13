@@ -1,7 +1,7 @@
 {
  "name": "Aurora Tonight",
  "short_name": "Aurora Tonight",
- "description": "À RÉÉCRIRE",
+ "description": "Northern lights tonight for your town: yes, maybe or no with the best hours, from live SWPC Kp and OVATION data, National Weather Service clouds and real dark hours.",
  "start_url": "/en/",
  "display": "standalone",
  "background_color": "#ffffff",

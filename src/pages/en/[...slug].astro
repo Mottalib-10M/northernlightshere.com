@@ -1,0 +1,17 @@
+---
+/** Every tool and guide (src/content/pages/), every hub (src/content/regions/) and city (src/content/cities/). */
+import ContentPage from '../../components/ContentPage.astro';
+import PlacePage from '../../components/PlacePage.astro';
+import { PAGES, REGION_PAGES, CITY_PAGES, pageById, PLACES_INDEX } from '../../lib/pages';
+import type { PageDef, RegionDef, CityDef } from '../../lib/page-types';
+export function getStaticPaths() {
+  const base = pageById(PLACES_INDEX)?.slug ?? PLACES_INDEX;
+  return [
+    ...PAGES.map((page) => ({ params: { slug: page.slug }, props: { page } })),
+    ...REGION_PAGES.map((region) => ({ params: { slug: `${base}/${region.slug}` }, props: { region } })),
+    ...CITY_PAGES.map((city) => ({ params: { slug: `${base}/${city.region}/${city.slug}` }, props: { city } })),
+  ];
+}
+const { page, region, city } = Astro.props as { page?: PageDef; region?: RegionDef; city?: CityDef };
+---
+{page ? <ContentPage page={page} /> : <PlacePage region={region} city={city} />}

@@ -74,7 +74,7 @@ export function moonIllumination(ms: number): { fraction: number; waxing: boolea
   const s = sunCoords(ms);
   const elong = Math.acos(cos(m.beta) * cos(m.lambda - s.lambda)) / RAD;
   // Phase angle: the Sun is ~389 times farther than the Moon, so i is close to 180 - elongation.
-  const i = Math.atan2(sin(elong), 0.00257 * 389 - cos(elong)) / RAD;
+  const i = Math.atan2(sin(elong), 0.00257 - cos(elong)) / RAD;
   return { fraction: (1 + cos(i)) / 2, waxing: norm360(m.lambda - s.lambda) < 180 };
 }
 
@@ -122,3 +122,20 @@ export function darkWindow(y: number, m: number, d: number, lat: number, lon: nu
 
 /** Hours of darkness in a window, 0 when there is none. */
 export const darkHours = (w: DarkWindow) => (w.kind === 'never' || w.start === undefined || w.end === undefined ? 0 : (w.end - w.start) / 3600000);
+
+/** New and full moons of a calendar month (UTC): local minima and maxima of the lit fraction, to the hour. */
+export function moonPhases(y: number, m: number): Array<{ kind: 'new' | 'full'; ms: number }> {
+  const out: Array<{ kind: 'new' | 'full'; ms: number }> = [];
+  const t0 = Date.UTC(y, m - 1, 1) - 3600000, t1 = Date.UTC(y, m, 1) + 3600000;
+  let a = moonIllumination(t0 - 3600000).fraction, b = moonIllumination(t0).fraction;
+  for (let t = t0 + 3600000; t <= t1; t += 3600000) {
+    const c = moonIllumination(t).fraction;
+    const mid = t - 3600000;
+    if (mid >= Date.UTC(y, m - 1, 1) && mid < Date.UTC(y, m, 1)) {
+      if (b < a && b <= c && b < 0.05) out.push({ kind: 'new', ms: mid });
+      if (b > a && b >= c && b > 0.95) out.push({ kind: 'full', ms: mid });
+    }
+    a = b; b = c;
+  }
+  return out;
+}

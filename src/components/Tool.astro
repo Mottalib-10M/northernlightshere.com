@@ -1,0 +1,13 @@
+---
+/** The forecast tool of a page, with every town of the site as a choice (hydrated island). */
+import AuroraTool, { type Mode } from './calc/AuroraTool';
+import { route, ROUTES } from '../i18n/routes';
+import { TOWNS, METHOD, townLabel } from '../lib/data';
+import { cityId } from '../lib/pages';
+interface Props { mode: Mode; place?: string; idPrefix?: string; methodHref?: string; embed?: boolean }
+const { mode, place = 'minnesota/minneapolis', idPrefix, methodHref = route('method', 'en'), embed = false } = Astro.props;
+const towns = TOWNS.map((t) => { const id = cityId(t.region, t.slug); return { key: `${t.region}/${t.slug}`, label: townLabel(t), lat: t.lat, lon: t.lon, tz: t.tz, mlat: t.mlat, href: ROUTES.some((r) => r.id === id) ? route(id, 'en') : undefined }; })
+  .sort((a, b) => a.label.localeCompare(b.label));
+const buildDay = new Date().toISOString().slice(0, 10);
+---
+<AuroraTool client:load mode={mode} towns={towns} defaultKey={place} method={METHOD} methodHref={methodHref} buildDay={buildDay} idPrefix={idPrefix ?? mode} embed={embed} />

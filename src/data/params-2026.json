@@ -1,29 +1,314 @@
 {
-  "_lisezmoi": "Tous les paramètres légaux du site vivent ici — jamais en dur dans le code (RECETTE-SITE.md §4). Renommer en params-<année>.json à chaque millésime. Chaque valeur doit être relue sur la source officielle citée avant d'être écrite, et retrieved_at mis à jour ce jour-là.",
+  "_readme": "Every rule of the answer lives here, never in a page (RECETTE-SITE.md §4, §17.4). Official values carry their source key; the other values are this site's own rules, written as such on the method page. Reread each source and update retrieved_at at every review.",
   "year": 2026,
-  "retrieved_at": "AAAA-MM-JJ",
-  "valid_from": "2026-01-01",
-  "valid_to": "2026-12-31",
+  "retrieved_at": "2026-10-13",
+  "valid_from": "2026-10-13",
+  "valid_to": "2027-10-12",
+  "method": {
+    "viewLine": [
+      [
+        0,
+        66
+      ],
+      [
+        1,
+        64
+      ],
+      [
+        2,
+        62
+      ],
+      [
+        3,
+        60
+      ],
+      [
+        4,
+        58
+      ],
+      [
+        5,
+        56
+      ],
+      [
+        6,
+        55
+      ],
+      [
+        7,
+        50
+      ],
+      [
+        8,
+        45
+      ],
+      [
+        9,
+        40
+      ]
+    ],
+    "viewLineSource": "Kp 0 to 5: equatorward edge of the oval, 66 degrees magnetic latitude at Kp 0 and 2 degrees lower per Kp step (swpc_tips). Kp 6 to 9: 'aurora has been seen as low as ... (typically 55, 50, 45, 40 degrees geomagnetic lat.)' (swpc_scales).",
+    "ovalEdgeKp0": 66,
+    "ovalStepPerKp": 2,
+    "darkSun": -18,
+    "twilightSun": -12,
+    "skyReachKm": 500,
+    "auroraBottomKm": 100,
+    "swpcMaxViewKm": 1000,
+    "ovationStrong": 10,
+    "ovationEdge": 5,
+    "cloudClear": 30,
+    "cloudBroken": 70,
+    "edgeKp": 1,
+    "moonBright": 0.75,
+    "moonAltitude": 10,
+    "ownRules": [
+      "skyReachKm",
+      "ovationStrong",
+      "ovationEdge",
+      "cloudClear",
+      "cloudBroken",
+      "edgeKp",
+      "moonBright",
+      "moonAltitude"
+    ],
+    "aacgmAltKm": 110
+  },
+  "facts": {
+    "auroraHeightKm": [
+      80,
+      500
+    ],
+    "greenNm": 557.7,
+    "greenHeightKm": [
+      120,
+      400
+    ],
+    "redHeightKmAbove": 300,
+    "bestLocalHours": [
+      22,
+      2
+    ],
+    "l1DistanceKm": 1600000,
+    "ovationLeadMinutes": [
+      30,
+      90
+    ],
+    "slowWindKms": 400,
+    "fastWindKms": [
+      500,
+      800
+    ],
+    "auMeanKm": 149597870.7,
+    "kpStations": 13,
+    "kpMagLatBand": [
+      44,
+      60
+    ],
+    "gScale": [
+      {
+        "g": 1,
+        "kp": "5",
+        "label": "Minor",
+        "perCycle": 1700,
+        "days": 900,
+        "seen": "high latitudes (northern Michigan and Maine)",
+        "mlat": null
+      },
+      {
+        "g": 2,
+        "kp": "6",
+        "label": "Moderate",
+        "perCycle": 600,
+        "days": 360,
+        "seen": "New York and Idaho",
+        "mlat": 55
+      },
+      {
+        "g": 3,
+        "kp": "7",
+        "label": "Strong",
+        "perCycle": 200,
+        "days": 130,
+        "seen": "Illinois and Oregon",
+        "mlat": 50
+      },
+      {
+        "g": 4,
+        "kp": "8, including a 9-",
+        "label": "Severe",
+        "perCycle": 100,
+        "days": 60,
+        "seen": "Alabama and northern California",
+        "mlat": 45
+      },
+      {
+        "g": 5,
+        "kp": "9",
+        "label": "Extreme",
+        "perCycle": 4,
+        "days": 4,
+        "seen": "Florida and southern Texas",
+        "mlat": 40
+      }
+    ],
+    "storms": [
+      {
+        "date": "2024-05-10",
+        "g": 5,
+        "note": "G5 (Extreme) conditions reached on May 10, 2024, for the first time since October 2003 (SWPC, as reported at the time)"
+      }
+    ]
+  },
   "sources": {
-    "principale": {
-      "url": "https://exemple.gouv.xx/page-officielle",
+    "swpc_tips": {
+      "url": "https://www.spaceweather.gov/content/tips-viewing-aurora",
       "label": {
-        "fr": "Administration — intitulé exact de la page ou du texte",
-        "en": "Authority — exact title of the page or legal text"
+        "en": "NOAA Space Weather Prediction Center, Tips on Viewing the Aurora (Kp and the edge of the oval, darkness, timing, season)"
       }
     },
-    "loi": {
-      "url": "https://exemple.gouv.xx/texte-de-loi",
+    "swpc_scales": {
+      "url": "https://www.spaceweather.gov/noaa-scales-explanation",
       "label": {
-        "fr": "Loi / code — article précis appliqué par le moteur",
-        "en": "Act / code — the exact article the engine applies"
+        "en": "NOAA Space Weather Prediction Center, NOAA Space Weather Scales: geomagnetic storms G1 to G5"
       }
     },
-    "bareme": {
-      "url": "https://exemple.gouv.xx/bareme-annuel",
+    "swpc_kp": {
+      "url": "https://www.spaceweather.gov/products/planetary-k-index",
       "label": {
-        "fr": "Barème ou circulaire annuelle, millésime 2026",
-        "en": "Annual schedule or circular, 2026 edition"
+        "en": "NOAA Space Weather Prediction Center, Planetary K-index"
+      }
+    },
+    "swpc_ovation": {
+      "url": "https://www.spaceweather.gov/products/aurora-30-minute-forecast",
+      "label": {
+        "en": "NOAA Space Weather Prediction Center, Aurora 30-Minute Forecast (OVATION model)"
+      }
+    },
+    "swpc_aurora": {
+      "url": "https://www.spaceweather.gov/phenomena/aurora",
+      "label": {
+        "en": "NOAA Space Weather Prediction Center, Aurora (heights, shapes, where it is seen)"
+      }
+    },
+    "swpc_tutorial": {
+      "url": "https://www.spaceweather.gov/content/aurora-tutorial",
+      "label": {
+        "en": "NOAA Space Weather Prediction Center, Aurora Tutorial (colors and their heights)"
+      }
+    },
+    "swpc_3day": {
+      "url": "https://www.spaceweather.gov/products/3-day-forecast",
+      "label": {
+        "en": "NOAA Space Weather Prediction Center, 3-Day Forecast"
+      }
+    },
+    "swpc_27day": {
+      "url": "https://www.spaceweather.gov/products/27-day-outlook-107-cm-radio-flux-and-geomagnetic-indices",
+      "label": {
+        "en": "NOAA Space Weather Prediction Center, 27-Day Outlook of 10.7 cm Radio Flux and Geomagnetic Indices"
+      }
+    },
+    "swpc_cycle": {
+      "url": "https://www.spaceweather.gov/products/solar-cycle-progression",
+      "label": {
+        "en": "NOAA Space Weather Prediction Center, Solar Cycle Progression"
+      }
+    },
+    "swpc_wind": {
+      "url": "https://www.spaceweather.gov/phenomena/solar-wind",
+      "label": {
+        "en": "NOAA Space Weather Prediction Center, Solar Wind"
+      }
+    },
+    "swpc_rtsw": {
+      "url": "https://www.spaceweather.gov/products/real-time-solar-wind",
+      "label": {
+        "en": "NOAA Space Weather Prediction Center, Real Time Solar Wind"
+      }
+    },
+    "swpc_storms": {
+      "url": "https://www.spaceweather.gov/phenomena/geomagnetic-storms",
+      "label": {
+        "en": "NOAA Space Weather Prediction Center, Geomagnetic Storms"
+      }
+    },
+    "swpc_cme": {
+      "url": "https://www.spaceweather.gov/phenomena/coronal-mass-ejections",
+      "label": {
+        "en": "NOAA Space Weather Prediction Center, Coronal Mass Ejections"
+      }
+    },
+    "swpc_data_kp": {
+      "url": "https://services.swpc.noaa.gov/products/noaa-planetary-k-index-forecast.json",
+      "label": {
+        "en": "SWPC data service: planetary K-index, observed, estimated and 3-day forecast (JSON)"
+      }
+    },
+    "swpc_data_ovation": {
+      "url": "https://services.swpc.noaa.gov/json/ovation_aurora_latest.json",
+      "label": {
+        "en": "SWPC data service: latest OVATION aurora probability grid (JSON)"
+      }
+    },
+    "nws_api": {
+      "url": "https://www.weather.gov/documentation/services-web-api",
+      "label": {
+        "en": "National Weather Service API (api.weather.gov): hourly sky cover forecast"
+      }
+    },
+    "metno": {
+      "url": "https://api.met.no/doc/TermsOfService",
+      "label": {
+        "en": "Norwegian Meteorological Institute, Locationforecast terms of service (cloud cover outside the US, CC BY 4.0)"
+      }
+    },
+    "nasa_power": {
+      "url": "https://power.larc.nasa.gov/",
+      "label": {
+        "en": "NASA POWER project: monthly cloud amount climatology 2001 to 2025 (CERES SYN1deg)"
+      }
+    },
+    "gfz_kp": {
+      "url": "https://kp.gfz.de/en/",
+      "label": {
+        "en": "GFZ Helmholtz Centre for Geosciences, the official Kp index"
+      }
+    },
+    "aacgm": {
+      "url": "https://superdarn.thayer.dartmouth.edu/aacgm.html",
+      "label": {
+        "en": "AACGM-v2 magnetic coordinates (Shepherd 2014, Journal of Geophysical Research: Space Physics 119)"
+      }
+    },
+    "igrf": {
+      "url": "https://www.ncei.noaa.gov/products/international-geomagnetic-reference-field",
+      "label": {
+        "en": "NOAA NCEI, International Geomagnetic Reference Field (IGRF-14)"
+      }
+    },
+    "ncei_poles": {
+      "url": "https://www.ncei.noaa.gov/products/wandering-geomagnetic-poles",
+      "label": {
+        "en": "NOAA NCEI, Wandering of the Geomagnetic Poles"
+      }
+    },
+    "noaa_solcalc": {
+      "url": "https://gml.noaa.gov/grad/solcalc/calcdetails.html",
+      "label": {
+        "en": "NOAA Global Monitoring Laboratory, solar calculation details (Sun position equations)"
+      }
+    },
+    "census_gazetteer": {
+      "url": "https://www.census.gov/geographies/reference-files/time-series/geo/gazetteer-files.html",
+      "label": {
+        "en": "US Census Bureau, 2024 Gazetteer files (town and ZIP code coordinates)"
+      }
+    },
+    "natural_earth": {
+      "url": "https://www.naturalearthdata.com/",
+      "label": {
+        "en": "Natural Earth, 1:110m land outlines (public domain)"
       }
     }
   }

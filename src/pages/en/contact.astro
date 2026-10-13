@@ -6,20 +6,20 @@ import { route } from '../../i18n/routes';
 import { contactPageSchema } from '../../lib/seo';
 const lang = 'en';
 const path = route('contact', lang);
-const description = 'Write to the publisher of Home Costs by State about a figure, a source or a calculator. We answer data questions; we do not refer contractors or review individual quotes.';
+const description = 'Write to the publisher of Aurora Tonight about a forecast, a town, a magnetic latitude or the embed code. No alerts, no app support, no photo identification.';
 ---
-<PageLayout title="Contact Home Costs by State: corrections, data and embed questions" description={description} lang={lang} noindex={true} jsonLd={[contactPageSchema({ name: 'Contact', description, path, lang })]} breadcrumbs={[{ label: 'Contact' }]} showAuthor={false}>
+<PageLayout title="Contact Aurora Tonight: corrections, towns and embed questions" description={description} lang={lang} noindex={true} jsonLd={[contactPageSchema({ name: 'Contact', description, path, lang })]} breadcrumbs={[{ label: 'Contact' }]} showAuthor={false}>
   <div class="prose prose-slate max-w-none prose-headings:font-serif">
     <h1>Contact</h1>
-    <p>E-mail: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. There is no form on purpose: a form would be one more place where a phone number gets typed.</p>
-    <h2>What we can help with</h2>
+    <p>E-mail: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. There is no form and no sign-up: the forecast never needs your name or address.</p>
+    <h2>Useful messages</h2>
     <ul>
-      <li>A figure that looks wrong: tell us the page, the state and the inputs (or paste the share link). We check it against the source release and correct it if needed.</li>
-      <li>A newer official release we have missed, or an official source for your state that would improve a page.</li>
-      <li>Embedding the roof cost or concrete calculator on your own site: see the <a href={route('widget', lang)}>embed page</a> first.</li>
+      <li>An answer that looked wrong: send the share link the tool gives (it holds the place, the night and your settings) and what you saw in the sky. We compare it with the SWPC and NWS data of that night.</li>
+      <li>A town you would like on the site, with its state or country.</li>
+      <li>Embedding the forecast on a club, observatory or tourism site: the <a href={route('widget', lang)}>embed page</a> has the code.</li>
     </ul>
     <h2>What we cannot do</h2>
-    <p>We do not recommend contractors, we have no partners to pass you to, and we cannot judge whether a specific quote is fair: we have not seen the house. The price ranges and the <a href={route('method', lang)}>method page</a> are there to help you ask the right questions.</p>
+    <p>We send no alerts and keep no list of addresses to notify. We cannot say whether a photo shows aurora or airglow, and we do not answer for the feeds themselves: questions on the Kp forecast go to the NOAA Space Weather Prediction Center, on cloud forecasts to the National Weather Service. The <a href={route('method', lang)}>method page</a> explains what the tool does with them.</p>
     <h2>Publisher</h2>
     <LegalIdentity lang={lang} />
   </div>

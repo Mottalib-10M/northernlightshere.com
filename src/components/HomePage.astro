@@ -1,0 +1,63 @@
+---
+/**
+ * Home, in the order of the question it answers: the tool first (town, night, answer), then the Kp ladder that
+ * places every town of the site on the scale, the folded answer, the tools and guides, the long text in
+ * accordions, the FAQ. Text: src/content/home.ts.
+ */
+import PageLayout from '../layouts/PageLayout.astro';
+import Clamp from './Clamp.astro';
+import Tool from './Tool.astro';
+import { HOME } from '../content/home';
+import { route } from '../i18n/routes';
+import { GROUPS } from '../i18n/nav';
+import { helpers, SOURCES } from '../lib/helpers';
+import { PAGES, CITY_PAGES, cityId } from '../lib/pages';
+import { KIT } from '../lib/kit';
+import { day } from '../lib/fmt';
+import { faqSchema, organizationSchema, websiteSchema, webPageSchema, webApplicationSchema } from '../lib/seo';
+import { LAST_UPDATED } from '../data/site-config';
+const lang = 'en';
+const x = HOME;
+const path = route('home', lang);
+const h = helpers();
+const sources = x.sources.map((k) => ({ name: SOURCES[k].label, url: SOURCES[k].url }));
+const jsonLd = [websiteSchema(lang), organizationSchema(lang), webPageSchema({ name: x.h1, description: x.description, path, lang }), webApplicationSchema({ name: x.h1, description: x.description, path, lang }), faqSchema(x.faqs, lang)];
+const cities = CITY_PAGES.map((c) => KIT.facts(c.region, c.slug));
+const bands = [[0, 2], [2, 4], [4, 5], [5, 6], [6, 7], [7, 8], [8, 9.01]].map(([lo, hi]) => ({ lo, hi, list: cities.filter((f) => f.need !== null && f.need >= lo && f.need < hi).sort((a, b) => a.need! - b.need!) }));
+const beyond = cities.filter((f) => f.need === null);
+const sections = x.sections(h);
+const tools = PAGES.filter((p) => p.group === 'forecast');
+const guides = PAGES.filter((p) => p.group === 'guides');
+---
+<PageLayout title={x.title} description={x.description} lang={lang} jsonLd={jsonLd} faqs={x.faqs} sources={sources}>
+  <header class="mb-4">
+    <h1 class="font-serif text-3xl font-bold text-navy-900 md:text-4xl">{x.h1}</h1>
+    <p class="mt-2 text-base text-navy-700 sm:text-lg">{x.intro}</p>
+  </header>
+  <div data-outil><Tool mode="tonight" idPrefix="home" /></div>
+  <p class="mt-3 text-sm text-navy-600">Rules and place data checked <time datetime={LAST_UPDATED}>{day(LAST_UPDATED)}</time> · <a href={route('method', lang)} class="underline">How the answer is built</a> · <a href={route('about', lang)} class="underline">Who publishes this site</a></p>
+  <Clamp text={x.resume} lang={lang} id="clamp-home" class="my-8" />
+  <section class="mb-10" aria-labelledby="ladder">
+    <h2 id="ladder" class="font-serif text-2xl font-bold text-navy-900">{x.ladderTitle}</h2>
+    <div class="prose prose-slate max-w-none"><Fragment set:html={x.ladderIntro(h)} /></div>
+    <ol data-chrome class="mt-4 space-y-2 border-l-4 border-accent-500 pl-4">
+      {bands.filter((b) => b.list.length).map((b) => (
+        <li class="text-sm"><span class="mr-2 inline-block w-24 font-semibold tabular-nums text-navy-900">Kp {KIT.num(b.lo, 0)} to {KIT.num(Math.min(9, b.hi), 0)}</span>
+          {b.list.map((f, i) => <>{i > 0 && ' · '}<a class="text-accent-700 underline-offset-2 hover:underline" href={route(cityId(f.town.region, f.town.slug), lang)}>{f.town.name} {KIT.kp(f.need)}</a></>)}</li>
+      ))}
+      {beyond.length > 0 && <li class="text-sm"><span class="mr-2 inline-block w-24 font-semibold text-navy-900">Beyond Kp 9</span>{beyond.map((f) => f.town.name).join(' · ')}</li>}
+    </ol>
+  </section>
+  <section class="mb-10" data-chrome>
+    <div class="grid gap-8 md:grid-cols-2">
+      {[{ t: GROUPS[0].label, l: tools }, { t: GROUPS[1].label, l: guides }].map((g) => (
+        <div><h2 class="font-serif text-xl font-bold text-navy-900">{g.t}</h2>
+          <ul class="mt-3 space-y-2 text-sm">{g.l.map((p) => <li><a href={route(p.id, lang)} class="font-medium text-accent-700 underline-offset-2 hover:underline">{p.nav}</a><span class="block text-navy-600">{p.card}</span></li>)}</ul></div>
+      ))}
+    </div>
+  </section>
+  <section class="mt-10">
+    <h2 class="font-serif text-2xl font-bold text-navy-900">{x.foldTitle}</h2>
+    {sections.map((s) => <details class="fold"><summary><h3 class="fold-h">{s.title}</h3></summary><div class="prose prose-slate max-w-none pb-4"><Fragment set:html={s.html} /></div></details>)}
+  </section>
+</PageLayout>

@@ -6,7 +6,7 @@ import { KIT } from './kit';
 import { P } from './data';
 
 const esc = (s: string | number) => String(s).replace(/&(?!(?:[a-z]+|#\d+);)/g, '&amp;').replace(/</g, '&lt;');
-export const SOURCES: Record<string, { url: string; label: string }> = (P as unknown as { sources: Record<string, { url: string; label: string }> }).sources;
+export const SOURCES: Record<string, { url: string; label: string }> = Object.fromEntries(Object.entries(P.sources).map(([k, v]) => [k, { url: v.url, label: v.label.en }]));
 
 export function table(headers: string[], rows: Array<Array<string | number>>, caption?: string, align: Array<'l' | 'r'> = []) {
   const al = (i: number) => (align[i] === 'r' ? 'text-right' : 'text-left');

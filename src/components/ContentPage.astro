@@ -1,0 +1,69 @@
+---
+/**
+ * A tool page or a guide of src/content/pages/. Tool: H1, the tool at once, the folded answer, the text.
+ * Guide: H1, the folded answer, its mini-simulator (RECETTE §9.3), the text. FAQ, related pages, sources and
+ * publisher come from PageLayout. The places index adds the Kp ladder of every town after the tool.
+ */
+import PageLayout from '../layouts/PageLayout.astro';
+import MiniSim from './calc/MiniSim';
+import Clamp from './Clamp.astro';
+import Tool from './Tool.astro';
+import { route, ROUTES } from '../i18n/routes';
+import { label, GROUPS } from '../i18n/nav';
+import { t } from '../i18n/ui';
+import { pageById, REGION_PAGES, CITY_PAGES, regionId, cityId } from '../lib/pages';
+import { helpers, SOURCES, table } from '../lib/helpers';
+import { KIT } from '../lib/kit';
+import { REGIONS, TOWNS, townLabel, P } from '../lib/data';
+import { day } from '../lib/fmt';
+import { articleSchema, faqSchema, breadcrumbSchema, webPageSchema, webApplicationSchema } from '../lib/seo';
+import { AUTHOR_NAME, LAST_UPDATED } from '../data/site-config';
+import type { PageDef } from '../lib/page-types';
+interface Props { page: PageDef }
+const { page } = Astro.props;
+const lang = 'en';
+const ui = t(lang);
+const path = route(page.id, lang);
+const group = GROUPS.find((g) => g.id === page.group)!;
+const parts = page.body(helpers()).split(/<!--mini:([A-Za-z0-9_-]+)(?:\|([A-Za-z0-9+/=]+))?-->/);
+const decode = (b?: string) => (b ? Buffer.from(b, 'base64').toString('utf8') : undefined);
+const jsonLd = [page.tool ? webApplicationSchema({ name: page.h1, description: page.description, path, lang }) : articleSchema({ title: page.h1, description: page.description, path, lang }), webPageSchema({ name: page.h1, description: page.description, path, lang }), breadcrumbSchema([{ name: ui.breadcrumbHome, path: route('home', lang) }, { name: page.nav, path }])];
+if (page.faqs.length) jsonLd.push(faqSchema(page.faqs, lang));
+const card = (id: string) => pageById(id)?.card ?? (id.startsWith('region:') || id.startsWith('city:') ? 'Kp needed, dark hours and tonight’s answer for this place' : '');
+const related = page.related.filter((id) => ROUTES.some((r) => r.id === id)).map((id) => ({ href: route(id, lang), name: label(id), description: card(id) }));
+const sources = page.sources.map((k) => ({ name: SOURCES[k].label, url: SOURCES[k].url }));
+const isIndex = page.tool === 'places';
+const linkOf = (r: string, s: string) => { const c = cityId(r, s); if (CITY_PAGES.some((x) => x.region === r && x.slug === s)) return route(c, lang); return REGION_PAGES.some((x) => x.slug === r) ? route(regionId(r), lang) : null; };
+const ladderRows = isIndex ? TOWNS.map((tw) => KIT.facts(tw.region, tw.slug)).sort((a, b) => (a.need ?? 99) - (b.need ?? 99)).map((f) => { const href = linkOf(f.town.region, f.town.slug); return [href ? `<a href="${href}">${townLabel(f.town)}</a>` : townLabel(f.town), `${KIT.num(f.mlat, 1)}°`, KIT.kp(f.need), KIT.kp(f.overhead), KIT.gName(f.g)]; }) : [];
+const modeOf = page.tool === 'places' ? 'tonight' : page.tool;
+---
+<PageLayout title={page.title} description={page.description} lang={lang} jsonLd={jsonLd} faqs={page.faqs} related={related} sources={sources} breadcrumbs={[{ label: group.label }, { label: page.nav }]}>
+  <article>
+    <header class="mb-4">
+      <p class="text-xs font-semibold uppercase tracking-wide text-accent-700 sm:text-sm">{group.label}{page.tool ? ' · live SWPC data' : ''}</p>
+      <h1 class="mt-1 font-serif text-[1.75rem] font-bold text-navy-900 max-sm:leading-tight sm:text-3xl md:text-4xl">{page.h1}</h1>
+      <p class="mt-2 text-base text-navy-700 sm:text-lg">{page.intro}</p>
+    </header>
+    {modeOf && <div data-outil class="mb-4"><Tool mode={modeOf} idPrefix={page.id.slice(0, 6)} /></div>}
+    <p class="mb-6 text-sm text-navy-600">{ui.reviewedBy} <a href={route('about', lang)} class="underline hover:text-navy-900">{AUTHOR_NAME}</a> · rules checked <time datetime={LAST_UPDATED}>{day(LAST_UPDATED)}</time> · <a href={route('method', lang)} class="underline hover:text-navy-900">{label('method')}</a> · <a href={route('editorial', lang)} class="underline hover:text-navy-900">{ui.editorialPolicy}</a></p>
+    <Clamp text={page.resume} lang={lang} id={`clamp-${page.id}`} class="mb-8" />
+    {page.mini && <MiniSim client:load kind={page.mini.kind} arg={page.mini.arg === undefined ? undefined : JSON.stringify(page.mini.arg)} href={route('home', lang)} />}
+    {isIndex && (
+      <section data-chrome class="mb-10">
+        <h2 class="font-serif text-2xl font-bold text-navy-900">States, provinces and countries</h2>
+        <ul class="mt-4 grid grid-cols-2 gap-x-6 gap-y-1.5 text-sm sm:grid-cols-3 lg:grid-cols-4">
+          {REGION_PAGES.map((r) => <li><a class="text-accent-700 underline-offset-2 hover:underline" href={route(regionId(r.slug), lang)}>{REGIONS.find((x) => x.slug === r.slug)!.name}</a></li>)}
+        </ul>
+      </section>
+    )}
+    <div class="prose prose-slate max-w-none prose-headings:font-serif">
+      {parts.map((p, i) => i % 3 === 0 ? <Fragment set:html={p ?? ''} /> : i % 3 === 1 ? <MiniSim client:load kind={p} arg={decode(parts[i + 1])} href={route('home', lang)} /> : null)}
+    </div>
+    {isIndex && (
+      <section data-chrome class="mt-10">
+        <h2 class="font-serif text-2xl font-bold text-navy-900">Kp needed in {TOWNS.length} towns, from the easiest to the hardest</h2>
+        <Fragment set:html={table(['Place', 'Magnetic latitude', 'Kp to see it', 'Kp overhead', 'Storm level'], ladderRows, `AACGM-v2 magnetic latitude at ${P.method.aacgmAltKm} km; Kp needed from the SWPC oval rule and the NOAA G scale (method page).`, ['l', 'r', 'r', 'r', 'l'])} />
+      </section>
+    )}
+  </article>
+</PageLayout>

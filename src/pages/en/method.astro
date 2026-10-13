@@ -1,56 +1,60 @@
 ---
-/** Method: every data set, the formula of a job price, a worked example, the limits. Figures from the kit. */
+/** Method: every feed, every rule of the answer with its source or marked as our own, a worked example, the limits. */
 import PageLayout from '../../layouts/PageLayout.astro';
 import { route } from '../../i18n/routes';
 import { KIT as K } from '../../lib/kit';
 import { SOURCES, table } from '../../lib/helpers';
+import { PLACES_META, CLIMATE_META } from '../../lib/data';
 import { breadcrumbSchema, webPageSchema } from '../../lib/seo';
 const lang = 'en';
 const path = route('method', lang);
-const cpi = K.ahsMeta.cpi;
-const cpiMonth = K.month(cpi.to);
-const ex = K.job('roof', 'ohio');
-const exW = K.wage('ohio', 'roofers');
-const roofSh = K.shares('roof');
-const jobs = Object.keys(K.P.jobs);
-const occ: Record<string, string> = Object.fromEntries(jobs.map((k) => [k, K.occ(K.jobDef(k).occ).title]));
-const rowsJobs = jobs.map((k) => { const a = K.ahs(k); const sh = K.shares(k); return [K.jobDef(k).label, K.num(a.pro.n), `${K.usd(a.pro.p25)} / ${K.usd(a.pro.median)} / ${K.usd(a.pro.p75)}`, sh.label, K.pct(sh.payroll + sh.benefits), occ[k]]; });
-const rowsCpi = Object.entries(cpi.annual).filter(([y]) => ['2021', '2022', '2023'].includes(y)).map(([y, v]) => [y, K.num(v as number, 3), K.num(cpi.value / (v as number), 3)]);
+const M = K.METHOD;
+const P = K.P;
 const src = (k: string, t?: string) => `<a href="${SOURCES[k].url}" target="_blank" rel="nofollow noopener noreferrer">${t ?? SOURCES[k].label}</a>`;
-const title = 'Home Cost Data 2026: Census, BLS and EIA Sources Explained';
-const description = 'How each price on Home Costs by State is built in 2026: Census survey jobs, BLS wages by state, Economic Census cost shares, EIA energy prices and their limits.';
+const line = M.viewLine.map(([k, lat]) => [`Kp ${k}`, `${lat}°`, k <= 5 ? 'SWPC oval rule' : `NOAA scale, G${k - 4}`]);
+const ex = K.facts('wisconsin', 'green-bay');
+const exm = K.monthly('wisconsin', 'green-bay');
+const title = 'Aurora Forecast Method 2026: Kp, OVATION, Clouds and Darkness';
+const description = 'How Aurora Tonight turns 2026 SWPC Kp and OVATION data, NWS sky cover and the Sun’s position into a yes, maybe or no per town: every rule, source and limit.';
+const ownRules = [
+  [`Sky reach`, `${M.skyReachKm} km`, `Half the ${P.method.swpcMaxViewKm} km SWPC gives as the best case; a 100 km high border at that distance stands about ${K.num(K.elevationOf(P.method.auroraBottomKm, M.skyReachKm), 0)}° up.`],
+  ['OVATION strong / possible', `${M.ovationStrong}% / ${M.ovationEdge}%`, 'Highest probability inside the sky reach, current hour only.'],
+  ['Clear / broken sky', `≤ ${M.cloudClear}% / ≤ ${M.cloudBroken}% cloud`, 'Above that, overcast.'],
+  ['Edge of activity', `${M.edgeKp} Kp below the need`, 'Gives a maybe, never a yes.'],
+  ['Bright Moon', `${K.num(M.moonBright * 100, 0)}% lit and ${M.moonAltitude}° up`, 'Turns a yes with less than 1 Kp of margin into a maybe.'],
+  ['Darkness', `Sun below ${M.darkSun}°; twilight to ${M.twilightSun}°`, 'Astronomical night; twilight hours cap at maybe.'],
+];
 ---
-<PageLayout title={title} description={description} lang={lang} jsonLd={[webPageSchema({ name: 'How prices are built', description, path, lang }), breadcrumbSchema([{ name: 'Home', path: route('home', lang) }, { name: 'How prices are built', path }])]} breadcrumbs={[{ label: 'How prices are built' }]}>
+<PageLayout title={title} description={description} lang={lang} jsonLd={[webPageSchema({ name: 'How the answer works', description, path, lang }), breadcrumbSchema([{ name: 'Home', path: route('home', lang) }, { name: 'How the answer works', path }])]} breadcrumbs={[{ label: 'How the answer works' }]}>
   <article class="prose prose-slate max-w-none prose-headings:font-serif">
-    <h1>How the prices on this site are built</h1>
-    <p>No public body publishes an official price for a roof, a water heater or a furnace, and this site does not pretend otherwise. What exists are measurements: what owners told the Census Bureau they paid, what each trade earns in each state, how contractors split their revenue between materials and labor, and what energy costs. Every price on the site is assembled from those measurements with one formula, shown below, and every result is a range rather than a single figure.</p>
-    <h2>1. The national range: jobs reported by homeowners</h2>
-    <p>The <Fragment set:html={src('census_ahs', 'American Housing Survey 2023')} /> (Census Bureau for HUD, national public use file, version 1.1) asks owners about home improvement jobs done in the two previous years: type of job, cost, year, whether someone in the household did most of the work, and how it was paid. We keep jobs done by professionals, weight them with the survey weights, and take the 25th percentile, the median and the 75th percentile. Each cost is moved to {cpiMonth} dollars with the <Fragment set:html={src('bls_cpi', 'CPI-U')} /> of its year: the latest index used is {K.num(cpi.value, 3)}.</p>
-    <Fragment set:html={table(['Job', 'Professional jobs in survey', `25th / median / 75th (${cpiMonth} $)`, 'Economic Census industry', 'Labor share L', 'BLS trade'], rowsJobs, 'Sources: AHS 2023 PUF v1.1; Economic Census 2022 (EC2223BASIC); BLS OEWS May 2025.', ['l', 'r', 'r', 'l', 'r', 'l'])} />
-    <Fragment set:html={table(['Year of the job', 'CPI-U annual average', `Factor to ${cpiMonth}`], rowsCpi, 'BLS series CUUR0000SA0.', ['l', 'r', 'r'])} />
-    <p>For roofs, the survey also gives the living area of the house, in seven groups from under 1,000 to 4,000 square feet or more; the roof calculator uses the group of the size you enter, for one-family detached homes.</p>
-    <h2>2. The regional level: the Census division</h2>
-    <p>Owners report very different prices in different parts of the country. For each of the nine Census divisions with at least 60 professional jobs of a given type in the survey, we compute the ratio of the division median to the national median; divisions with fewer jobs keep the national level (ratio 1). Every state takes the ratio of its division.</p>
-    <h2>3. The state adjustment: only the labor share moves</h2>
-    <p>Within a division, states differ mainly in what labor costs. The <Fragment set:html={src('census_ec', '2022 Economic Census')} /> gives, for each type of contractor, payroll and employer-paid benefits as a share of the value of construction work: that share is L. The <Fragment set:html={src('bls_oews', 'Occupational Employment and Wage Statistics')} /> of May 2025, released on {K.day(K.wageRef.released)}, give the mean hourly wage of the matching trade in each state; we divide it by the division's mean, weighted by each state's employment in that trade. The state price is then:</p>
-    <p><strong>price = national quartile × division ratio × ((1 − L) + L × state wage ÷ division wage)</strong></p>
-    <p>When BLS does not publish a state's wage for a trade, the ratio is set to 1 and the page says so. Results are rounded to the nearest $10.</p>
-    <h3>Worked example: a roof in Ohio</h3>
-    <p>The national median roof job is {K.usd(K.ahs('roof').pro.median)}. Ohio is in the East North Central division, whose ratio is {K.num(ex.region, 3)}. Roofing contractors' labor share is {K.pct(roofSh.payroll + roofSh.benefits)} (payroll {K.pct(roofSh.payroll)} plus benefits {K.pct(roofSh.benefits)}). Ohio roofers earned a mean of {exW ? K.usd(exW.mean, 2) : 'n/a'} an hour, {K.num(ex.index, 3)} times the division mean. The factor is {K.num(ex.region, 3)} × ((1 − {K.num(ex.L, 3)}) + {K.num(ex.L, 3)} × {K.num(ex.index, 3)}) = {K.num(ex.factor, 3)}, so the typical Ohio roof job is {K.usd(ex.typical)}, with a range of {K.usd(ex.low)} to {K.usd(ex.high)}.</p>
-    <h2>4. Material quantities</h2>
-    <p>The concrete, gravel, mulch, paint, drywall and roofing calculators are geometry plus figures printed by manufacturers or public agencies: bag yields from the <Fragment set:html={src('quikrete_1101', 'Quikrete data sheet')} />, ordering overage from the <Fragment set:html={src('nrmca_cip31', 'NRMCA')} />, aggregate weights from the <Fragment set:html={src('wisdot_305', 'Wisconsin DOT')} /> specifications, mulch coverage from <Fragment set:html={src('clemson_mulch', 'Clemson Extension')} />, paint spread rates from <Fragment set:html={src('bm_regal', 'Benjamin Moore')} /> and <Fragment set:html={src('valspar_ultra', 'Valspar')} /> data, drywall accessories from <Fragment set:html={src('usg_j371', 'USG')} />, shingle bundles from <Fragment set:html={src('oc_spec', 'Owens Corning')} />. We do not publish store prices: they change weekly and by store, and retailer sites cannot be read reliably. Each tool lets you type the price on the shelf tag.</p>
-    <h2>5. Energy and solar</h2>
-    <p>Electricity prices are the residential averages of the <Fragment set:html={src('eia_epm', 'EIA Electric Power Monthly')} /> for {K.energyMeta.electricityText}, and average consumption and bills come from <Fragment set:html={src('eia_861', 'EIA-861')} /> for 2024. Gas, propane and heating oil prices are EIA averages over {K.energyMeta.gas}; where EIA does not survey a state, the U.S. average is used. Heat contents come from <Fragment set:html={src('eia_btu', 'EIA')} />, default heating loads from <Fragment set:html={src('eia_recs', 'RECS 2020')} />, efficiency minimums from <Fragment set:html={src('ecfr_430_32', '10 CFR 430.32')} />. Solar output per kW is computed with <Fragment set:html={src('nlr_pvwatts', 'PVWatts')} /> for the largest city of each state (20° tilt, south facing, 14% losses). PVWatts' free access allowed {K.solarCalibration.states} states; for the others we take the yearly sunshine on a roof tilted at latitude minus 15° from <Fragment set:html={src('nasa_power', 'NASA POWER')} /> and multiply it by the median performance ratio PVWatts gives in the states computed both ways ({K.num(K.solarCalibration.performanceRatio, 3)}); in those states the two methods differ by at most {K.num(K.solarCalibration.maxError * 100, 0)}%. Solar prices start from the EnergySage state medians published in the <Fragment set:html={src('nlr_siu_2026', 'NLR Spring 2026 Solar and Storage Industry Update')} />; the high end adds the gap between New York's 2025 reported prices (<Fragment set:html={src('nyserda_solar', 'NYSERDA')} />, median {K.usd(K.nyReported.median, 2)}/W) and New York's median quote, a factor of {K.num(K.reportedToQuote(), 3)}.</p>
-    <h2>6. What this method cannot do</h2>
+    <h1>How the answer is built</h1>
+    <p>No agency publishes a yes or no for the aurora over your town, and this site does not pretend to speak for one. What exists are forecasts and models: a planetary Kp index forecast by the NOAA Space Weather Prediction Center, the OVATION model of where the aurora is right now, weather forecasts of cloud cover, and the astronomy of the Sun and the Moon. The site joins them for one place with the rules below. Each rule either comes from a named source or is marked as our own choice.</p>
+    <h2>1. The magnetic latitude of the place</h2>
+    <p>The aurora forms an oval around the magnetic pole, so distance to the aurora is measured in magnetic latitude. We use AACGM-v2, the altitude-adjusted corrected geomagnetic coordinates of Shepherd (2014), built on the International Geomagnetic Reference Field: {PLACES_META.aacgm}. For the {K.TOWNS.length} towns of the site the value is computed exactly; for a ZIP code or coordinates it is interpolated in a grid of one degree from 20° to 80° north, within 0.3° of the exact value in our tests. Town positions are the internal points of the <Fragment set:html={src('census_gazetteer', 'Census Bureau 2024 Gazetteer')} />, except a few large municipalities where the downtown is used; Canadian and British cities use city centre coordinates.</p>
+    <h2>2. The Kp a place needs</h2>
+    <p>Two published relationships give the magnetic latitude from which aurora can be seen at each Kp. Up to Kp 5, SWPC's <Fragment set:html={src('swpc_tips', 'Tips on Viewing the Aurora')} />: the equatorward edge of the oval sits near {P.method.ovalEdgeKp0}° at Kp 0 and moves about {P.method.ovalStepPerKp}° per step. From Kp 6 to 9, the <Fragment set:html={src('swpc_scales', 'NOAA Space Weather Scales')} />, which give the typical magnetic latitude down to which aurora has been seen at G2 to G5. Between the points the line is linear; the Kp a place needs is where the line crosses its magnetic latitude.</p>
+    <Fragment set:html={table(['Kp', 'Seen down to (magnetic latitude)', 'Source'], line, 'The view line used by every page of the site.', ['l', 'r', 'l'])} />
+    <p>The Kp for aurora overhead uses the oval rule alone: (66 − magnetic latitude) ÷ 2. Below Kp 5 the view line is the edge of the oval itself, which is cautious: SWPC also says a bright aurora can be seen from up to {P.method.swpcMaxViewKm} km away from a hilltop with an open view north.</p>
+    <h2>3. Darkness and the Moon</h2>
+    <p>The Sun's altitude comes from the equations of the <Fragment set:html={src('noaa_solcalc', 'NOAA Global Monitoring Laboratory solar calculator')} />; the Moon's from the low-precision formulas of the Astronomical Almanac. Our tests compare them with the JPL DE421 ephemeris (through the Skyfield library) for five places on five dates: the Sun within 0.05°, the start and end of astronomical night within two minutes, the Moon within one degree and its lit fraction within two percentage points.</p>
+    <h2>4. The live feeds</h2>
+    <p>Your browser reads, directly and without going through us: the <Fragment set:html={src('swpc_data_kp', 'SWPC Kp forecast')} /> (observed, estimated and predicted three-hour blocks), the <Fragment set:html={src('swpc_data_ovation', 'latest OVATION grid')} />, and the cloud forecast. In the United States the cloud forecast is the hourly sky cover of the <Fragment set:html={src('nws_api', 'National Weather Service API')} /> for the forecast grid cell of the place; elsewhere, or if it fails, the cloud area fraction of the <Fragment set:html={src('metno', 'Norwegian Meteorological Institute')} />. SWPC and NWS data are in the public domain; MET Norway data are under CC BY 4.0. If a feed does not answer, the tool says so and lets you type the value.</p>
+    <h2>5. The rules of the answer</h2>
+    <p>Each hour between the end and the start of nautical twilight is rated twice. Activity: the Kp of the hour's three-hour block against the Kp the place needs; for the hour in progress, OVATION can raise it. Sky: the cloud cover of the hour. The hour's answer is the weaker of the two, capped by darkness and the Moon. The night takes its best hourly answer, and the best time is the longest run of hours that reach it. The thresholds are our own choices:</p>
+    <Fragment set:html={table(['Rule', 'Value', 'Why'], ownRules, 'Rules chosen by this site, stored in its parameter file and tested.', ['l', 'l', 'l'])} />
+    <h3>Worked example: Green Bay</h3>
+    <p>Green Bay sits at {K.num(ex.mlat, 1)}° magnetic latitude. That is between the Kp 6 point (55°) and the Kp 7 point (50°) of the view line, so the Kp needed is 6 + (55 − {K.num(ex.mlat, 1)}) ÷ 5 = {K.kp(ex.need)}, a {K.gName(ex.g)} storm. On a December night the Sun is 18° down for {K.num(exm[11].hours, 1)} hours. If SWPC forecasts Kp 6.67 for the block 03 to 06 UT, 9 pm to midnight in Green Bay in winter, and the National Weather Service gives 20% sky cover for those hours, each hour is strong and clear: the answer is yes, from 9 pm to midnight. With 50% cover it would be maybe; with Kp 5.33 it would be maybe too, one Kp short; with Kp 4, no.</p>
+    <h2>6. Monthly figures on place pages</h2>
+    <p>The darkness table of each place uses the 15th of each month of {K.REF_YEAR}. The cloud amount is the monthly mean of the {CLIMATE_META.source} at the place, and clear dark hours are the dark hours times the share of sky not covered: a long-run average, not a forecast.</p>
+    <h2>7. What this method cannot do</h2>
     <ul>
-      <li>It cannot see your house: pitch, layers, rot, access, brand and permit fees move a real quote.</li>
-      <li>The job survey covers 2021 to 2023 and records the type of job, not its size or material (except house size for roofs). General inflation (CPI) is used to update it, not the price of shingles or copper.</li>
-      <li>Division ratios rest on tens to a few hundred jobs each and on rounded answers; they are less precise than the national figures.</li>
-      <li>The labor share is an average over each contractor industry, residential and commercial work together.</li>
-      <li>Moving prices use the revenue that moving companies earn per dollar of payroll, an average that includes long-distance hauling; your hours are your own estimate.</li>
-      <li>Incentives, utility rebates and net metering rules vary by state and utility and are not modeled, except the end of the federal 25C and 25D credits on December 31, 2025 (<Fragment set:html={src('irs_25d', 'IRS')} />).</li>
+      <li>It cannot predict substorms, the bursts that can light up a sky for twenty minutes on a quiet Kp night, nor the exact arrival time of a coronal mass ejection.</li>
+      <li>Kp is planetary and averaged over three hours; the view line is an average relationship that SWPC itself calls approximate.</li>
+      <li>It does not know your horizon, local light pollution or fog in your valley.</li>
+      <li>Cloud forecasts are forecasts: a front can clear an hour early or late.</li>
+      <li>AACGM coordinates drift as the magnetic field changes; the values are computed for October 2026 and are reviewed each year.</li>
     </ul>
-    <h2>7. Testing and updates</h2>
-    <p>The data files are rebuilt by a script from the official downloads; automated tests check the engines on known cases (bag yields, pitch factors, the Ohio example above, the order of every quartile) before each release. The site is reread when BLS publishes the next wage survey (spring), when the Census publishes the next American Housing Survey, and monthly for energy prices. Corrections are welcome through the <a href={route('contact', lang)}>contact page</a>.</p>
+    <h2>8. Tests and updates</h2>
+    <p>Automated tests check the astronomy against DE421, the Kp rules against the SWPC statements quoted above, the parsers against saved payloads of each feed and the verdict against hand-built nights, before every release. The data files are rebuilt by scripts from their downloads. Report a night where the answer was wrong through the <a href={route('contact', lang)}>contact page</a>, with the share link of the tool.</p>
   </article>
 </PageLayout>

@@ -1,0 +1,57 @@
+/** Home: "northern lights tonight". Text only; the layout is src/components/HomePage.astro. */
+import type { Helpers, FAQ } from '../lib/page-types';
+import { KIT as K } from '../lib/kit';
+
+const fb = K.facts('alaska', 'fairbanks');
+const mn = K.facts('minnesota', 'minneapolis');
+const ch = K.facts('illinois', 'chicago');
+const ny = K.facts('new-york', 'new-york-city');
+const sea = K.facts('washington', 'seattle');
+const g = K.P.facts.gScale;
+const M = K.METHOD;
+
+export const HOME = {
+  title: 'Northern Lights Tonight 2026: Yes, Maybe or No for Your Town',
+  description: `Northern lights tonight for your town in 2026: live Kp and OVATION from SWPC, NWS clouds and real dark hours give a yes, maybe or no with the best time.`,
+  h1: 'Northern lights tonight: yes, maybe or no for your town',
+  intro: 'Type a town or a ZIP code. The answer weighs the Kp forecast against the Kp your place needs, the hours of full darkness and the cloud forecast, hour by hour.',
+  resume: `Whether you will see the northern lights tonight depends on four things that are each published every day, and on one number that never changes for your town. The changing ones are the planetary Kp forecast of the NOAA Space Weather Prediction Center, issued in three-hour blocks, the OVATION model that maps the aurora 30 to 90 minutes ahead, the cloud forecast of the National Weather Service, and the hours when the Sun sits more than 18 degrees below your horizon. The fixed one is your magnetic latitude: Fairbanks sits at ${K.num(fb.mlat, 1)} degrees and needs ${K.kp(fb.need)} on the Kp scale, Minneapolis sits at ${K.num(mn.mlat, 1)} degrees and needs about ${K.kp(mn.need)}, Chicago about ${K.kp(ch.need)} and New York City about ${K.kp(ny.need)}. The tool above lines these up for each hour of the night and gives a plain yes, maybe or no, with the hours worth going out for.`,
+  ladderTitle: 'The Kp each place needs',
+  ladderIntro: (h: Helpers) => `<p>Every town of the site, placed on the Kp scale at the value from which aurora becomes visible there, low in the northern sky at first. Kp 5 is a ${h.gName(1)} storm, Kp 7 a ${h.gName(3)} one. Open a place for its darkness and clouds month by month, or ${h.a('northern-lights', 'see the whole list')}.</p>`,
+  foldTitle: 'How the answer is built, and how to use it',
+  sections: (h: Helpers) => [
+    {
+      title: 'Why the same Kp gives a yes in Duluth and a no in Denver',
+      html: `<p>Kp is one number for the whole planet. SWPC derives it from magnetometers between ${h.P.facts.kpMagLatBand[0]} and ${h.P.facts.kpMagLatBand[1]} degrees of magnetic latitude, and a high value means the ring of aurora around the magnetic pole has grown and slid toward the equator. What a forecast of Kp 5 means for you depends entirely on how far your town sits from that ring, and the ring is centred on the magnetic pole in northern Canada, not on the geographic pole. That is why Seattle, at ${h.num(sea.town.lat, 1)} degrees north, needs about ${h.kp(sea.need)} while Minneapolis, ${h.num(sea.town.lat - mn.town.lat, 1)} degrees further south, needs only ${h.kp(mn.need)}: Minneapolis is closer to the magnetic pole.</p><p>This site gives every place its AACGM-v2 magnetic latitude, the coordinate system the OVATION model itself uses, computed for October 2026 at an altitude of ${h.P.method.aacgmAltKm} km where the aurora glows. Then it applies two published relationships. Up to Kp 5, SWPC's rule: the southern edge of the oval sits at ${h.P.method.ovalEdgeKp0} degrees magnetic latitude at Kp 0 and moves ${h.P.method.ovalStepPerKp} degrees toward the equator per step. From Kp 6 to 9, the latitudes the NOAA storm scale gives for where aurora has been seen: ${g[1].mlat} degrees at G2, ${g[2].mlat} at G3, ${g[3].mlat} at G4, ${g[4].mlat} at G5. The ${h.a('kp-index', 'Kp index page')} shows both lines for any town.</p>`,
+    },
+    {
+      title: 'Darkness is computed, not assumed',
+      html: `<p>A faint display needs a black sky, and the sky is not black at sunset. The tool computes, for your coordinates and the night you pick, the moment the Sun's centre drops 18 degrees below the horizon and the moment it climbs back. Between those two times the sky is as dark as it gets. Hours with the Sun between 12 and 18 degrees down count as twilight: a bright storm can still show, so the answer can reach maybe, never yes.</p><p>This matters most where aurora is easiest. Fairbanks has no astronomical darkness at all in ${h.listOf(h.noDarkMonths('alaska', 'fairbanks'))}, and Edinburgh none in ${h.listOf(h.noDarkMonths('uk', 'edinburgh'))}. A Kp 7 storm in late June is invisible from places where it would be overhead in March. The ${h.a('dark-sky-hours', 'dark sky hours tool')} lists the dark window for the next thirty nights anywhere.</p>`,
+    },
+    {
+      title: 'Clouds, the factor no space weather site checks',
+      html: `<p>Most aurora pages stop at Kp. Yet on a G3 night the deciding question for most people is whether the sky will be clear, and that comes from a weather forecast, not a space weather one. For places in the United States the tool reads the hourly sky cover of the National Weather Service gridpoint that contains your coordinates. For Canada, the United Kingdom and as a fallback, it reads the cloud fraction of the Norwegian Meteorological Institute's Locationforecast. Each hour is rated clear at ${h.P.method.cloudClear}% cover or less, broken up to ${h.P.method.cloudBroken}%, and overcast above. You can override the forecast with what you see out of the window.</p>`,
+    },
+    {
+      title: 'What yes, maybe and no mean',
+      html: `<p>For each hour, the tool compares the Kp forecast for that three-hour block with the Kp your place needs. At or above it, activity is strong; up to ${h.P.method.edgeKp} below it, activity is at the edge; lower, it is quiet. If the current OVATION run puts a ${h.P.method.ovationStrong}% chance of aurora within ${h.P.method.skyReachKm} km of you, the hour that is happening now counts as strong whatever the Kp says. The hour's answer is the weaker of activity and sky: <strong>yes</strong> needs strong activity, a clear sky and full darkness; <strong>maybe</strong> is any mix of edge activity, broken cloud or twilight; <strong>no</strong> is quiet activity, overcast or daylight. A Moon more than ${h.num(h.P.method.moonBright * 100, 0)}% lit and more than ${h.P.method.moonAltitude} degrees up turns a narrow yes into a maybe, because it hides faint aurora without changing it. The night takes its best hourly answer, and the best time is the longest run of hours that reach it.</p><p>These thresholds are this site's own rules, written on the ${h.a('method', 'method page')} so that you can disagree with them. None of them is an official NOAA verdict: SWPC forecasts space weather, not your backyard.</p>`,
+    },
+    {
+      title: 'Using the answer well',
+      html: `<p>A yes is a reason to go out, not a guarantee. Kp forecasts made a day ahead often miss the timing of a coronal mass ejection by several hours, and a storm can fizzle when the magnetic field it carries points north. The OVATION line is the most reliable short-term signal because it is driven by the solar wind measured about ${h.num(h.P.facts.l1DistanceKm / 1e6, 1)} million km upstream, which gives ${h.P.facts.ovationLeadMinutes[0]} to ${h.P.facts.ovationLeadMinutes[1]} minutes of warning. Reload the page during the night: the feeds refresh, and the answer for the current hour updates with them.</p><p>Go north of the city lights, face north with an open horizon, and give your eyes twenty minutes. At the edge of visibility, the aurora often looks like a pale grey arch that a phone camera turns green; the ${h.a('photograph-northern-lights-phone', 'phone photography guide')} gives the settings. SWPC's own advice puts the most active hours ${h.P.facts.bestLocalHours[0] - 12} pm to ${h.P.facts.bestLocalHours[1]} am local time, and the hour strip of the tool shows which of those hours your sky will cooperate in.</p>`,
+    },
+    {
+      title: 'Where the data comes from',
+      html: `<p>Kp and OVATION come from the public JSON services of the NOAA Space Weather Prediction Center, read by your browser directly. Sky cover comes from api.weather.gov or api.met.no, also read by your browser, with your coordinates rounded. Darkness and the Moon come from astronomical equations run on your device and tested against the JPL DE421 ephemeris. Magnetic latitudes come from the AACGM-v2 model, monthly cloud averages from NASA POWER, and town and ZIP code positions from the Census Bureau's 2024 Gazetteer. Nothing you type is sent to us.</p>`,
+    },
+  ],
+  faqs: [
+    { q: 'Can I see the northern lights tonight from where I live?', a: `Type your town or ZIP code in the tool. It compares tonight's SWPC Kp forecast with the Kp your magnetic latitude needs, then checks the National Weather Service cloud forecast and the hours with the Sun 18 degrees down. From Minneapolis you need about Kp ${K.kp(mn.need)}; from Fairbanks only ${K.kp(fb.need)}. A yes means both conditions meet in the same hour.` },
+    { q: 'What Kp do I need to see the aurora in the northern United States?', a: `It ranges from no storm at all in interior Alaska to Kp ${K.kp(ch.need)} in Chicago and about ${K.kp(ny.need)} in New York City. Kp 5 is a G1 storm, which NOAA says makes aurora commonly visible in northern Michigan and Maine; Kp 7, a G3, has brought it as low as Illinois and Oregon.` },
+    { q: 'What time is best to look for the northern lights tonight?', a: `SWPC says the most active aurora usually comes within an hour or two of midnight, from about 10 pm to 2 am local time, and that the window widens when activity grows. The tool narrows it for your place: it keeps only the hours of full darkness, rates each one with the Kp of its three-hour block and its cloud cover, and prints the best run.` },
+    { q: 'Why does the forecast say no when the Kp is high?', a: `Three reasons come up most. Clouds: an overcast sky beats any storm. Daylight or twilight: in summer the Sun may never sink 18 degrees below your horizon, as in Fairbanks from ${K.noDarkMonths('alaska', 'fairbanks')[0]} on. And timing: the high Kp block may fall in your afternoon. The tool lists which of these applies under the answer.` },
+    { q: 'How accurate is a northern lights forecast?', a: `Fairly good for the next hour, uncertain beyond. OVATION, driven by solar wind measured upstream of Earth, looks 30 to 90 minutes ahead. The three-day Kp forecast is a prediction of storm arrival that can be hours off or wrong. Cloud forecasts add their own error. Treat yes as a good chance and check again during the night.` },
+    { q: 'Does a full moon stop you from seeing the aurora?', a: `It does not stop the aurora, but SWPC notes that a full moon lowers its apparent brightness. A strong display stays visible; a faint one at the edge of your range can vanish. The tool shows how much of the Moon is lit and turns a narrow yes into a maybe when the Moon is more than ${K.num(M.moonBright * 100, 0)}% lit and well above the horizon.` },
+  ] as FAQ[],
+  sources: ['swpc_tips', 'swpc_scales', 'swpc_ovation', 'swpc_kp', 'nws_api', 'metno', 'aacgm', 'nasa_power', 'census_gazetteer'],
+};

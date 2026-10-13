@@ -29,7 +29,7 @@ const publisherNode = (lang: Locale) => ({ '@type': 'Organization', name: name(l
 
 export function webApplicationSchema(o: { name: string; description: string; path: string; lang: Locale }): string {
   return JSON.stringify({ '@context': 'https://schema.org', '@type': 'WebApplication', name: o.name, description: o.description, url: `${SITE_URL}${o.path}`,
-    applicationCategory: 'FinanceApplication', operatingSystem: 'All', browserRequirements: 'Requires JavaScript', offers: { '@type': 'Offer', price: '0', priceCurrency: CURRENCY },
+    applicationCategory: 'WeatherApplication', operatingSystem: 'All', browserRequirements: 'Requires JavaScript', offers: { '@type': 'Offer', price: '0', priceCurrency: CURRENCY },
     inLanguage: inLang(o.lang), dateModified: LAST_UPDATED, isAccessibleForFree: true, author: authorNode(o.lang), publisher: publisherNode(o.lang) });
 }
 export function faqSchema(items: FAQItem[], lang: Locale): string {

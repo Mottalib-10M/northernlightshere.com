@@ -5,7 +5,7 @@ import { AUTHOR_NAME, CONTACT_EMAIL, LAST_UPDATED, LEGAL, SITE_NAMES, SITE_URL }
 import { route } from '../../i18n/routes';
 const lang = 'en';
 ---
-<PageLayout title={`${SITE_NAMES[lang]} legal notice: publisher, host and terms of use`} description="Publisher and host of Home Costs by State, why every price is an estimate built from public statistics and not a quote, intellectual property, embedding and governing law." lang={lang} noindex={true} breadcrumbs={[{ label: 'Legal notice' }]} showAuthor={false}>
+<PageLayout title={`${SITE_NAMES[lang]} legal notice: publisher, host and terms of use`} description="Publisher and host of Aurora Tonight, why every answer is a forecast and not a promise, the public data used and their owners, embedding terms, liability and governing law." lang={lang} noindex={true} breadcrumbs={[{ label: 'Legal notice' }]} showAuthor={false}>
   <div class="prose prose-slate max-w-none prose-headings:font-serif">
     <h1>Legal notice and terms of use</h1>
     <p>Information given under Article 6 III-1 of French law no. 2004-575 of 21 June 2004, the publisher being established in France.</p>
@@ -14,12 +14,13 @@ const lang = 'en';
     <p>Publication director: {AUTHOR_NAME}, responsible for the content of {SITE_URL}.</p>
     <h2>Host</h2>
     <LegalIdentity mode="hosting" lang={lang} />
-    <h2>Estimates, not quotes</h2>
-    <p>{SITE_NAMES[lang]} shows price ranges built from public statistics (Census Bureau, Bureau of Labor Statistics, Energy Information Administration and national laboratories) and quantities computed from manufacturers' published figures. It is not a contractor, does not inspect homes and does not make offers. A price on this site creates no obligation for anyone, and the price of your project is the one written in a contractor's quote. Building codes, permits, safety rules and product instructions always take precedence over a quantity or an estimate shown here. The method and its limits are on the <a href={route('method', lang)}>method page</a>.</p>
-    <h2>Liability</h2><p>Figures are read from official releases and the calculators are tested before each release, yet errors cannot be ruled out and data age. The publisher is not liable for a decision made on an estimate alone. Please report any error through the <a href={route('contact', lang)}>contact page</a>.</p>
-    <h2>Intellectual property</h2><p>Texts, design and code belong to the publisher; short quotations with a link back are welcome. Federal statistics used on the site are public domain works of the agencies that produced them; manufacturer figures remain theirs and are cited with their source.</p>
-    <h2>Embedding</h2><p>The roof cost and concrete calculators may be embedded for free with their credit link visible: see the <a href={route('widget', lang)}>embed page</a>.</p>
-    <h2>Personal data</h2><p>The site sets no cookie and keeps nothing you type in the calculators. Details: <a href={route('privacy', lang)}>privacy policy</a> and <a href={route('cookies', lang)}>cookies page</a>.</p>
+    <h2>A forecast, not a promise</h2>
+    <p>{SITE_NAMES[lang]} applies published rules to public forecasts of space weather and weather. Geomagnetic storms arrive early, late or not at all, and clouds move faster than any forecast: a yes is a good chance, never a guarantee of seeing aurora. The site is independent and is not affiliated with, endorsed by or operated for NOAA, the National Weather Service, NASA, the Norwegian Meteorological Institute or any other agency. Travel, driving at night and time spent outdoors in cold weather are your own decisions and risks.</p>
+    <h2>Data and their owners</h2><p>SWPC and National Weather Service data are works of the US government in the public domain. Cloud data outside the United States come from the Norwegian Meteorological Institute under the Creative Commons Attribution 4.0 licence; they are used unmodified, except for averaging over the hours of a night. NASA POWER climatology and Census Bureau Gazetteer files are public. Land outlines come from Natural Earth, in the public domain.</p>
+    <h2>Liability</h2><p>The engine is tested and the feeds are read as published, yet errors and outages cannot be ruled out. The publisher is not liable for a decision made on the answer alone. Please report any error through the <a href={route('contact', lang)}>contact page</a>.</p>
+    <h2>Intellectual property</h2><p>Texts, design and code belong to the publisher; short quotations with a link back are welcome.</p>
+    <h2>Embedding</h2><p>The forecast may be embedded for free with its credit link visible: see the <a href={route('widget', lang)}>embed page</a>.</p>
+    <h2>Personal data</h2><p>No cookie, no account; your position is used in your browser. Details in the <a href={route('privacy', lang)}>privacy policy</a> and on the <a href={route('cookies', lang)}>cookies page</a>.</p>
     <h2>Reporting unlawful content</h2><p>Write to <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> with the address of the page.</p>
     <h2>Governing law</h2><p>French law applies; failing an amicable settlement, the courts of {LEGAL.jurisdiction} have jurisdiction. Updated: {LAST_UPDATED}.</p>
   </div>

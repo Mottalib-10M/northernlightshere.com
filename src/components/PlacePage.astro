@@ -1,0 +1,80 @@
+---
+/**
+ * A state, province or country hub (RegionDef) or a city (CityDef). The tool comes first, set on the place
+ * (RECETTE §5), then the place's figures in a strip, the folded answer, the prose written for the place, and
+ * the generated tables (towns of the region by Kp needed, darkness and clouds by month), marked data-chrome
+ * because their form repeats on every place page (RECETTE §6.4).
+ */
+import PageLayout from '../layouts/PageLayout.astro';
+import MiniSim from './calc/MiniSim';
+import Clamp from './Clamp.astro';
+import Tool from './Tool.astro';
+import { route, ROUTES } from '../i18n/routes';
+import { label } from '../i18n/nav';
+import { t } from '../i18n/ui';
+import { pageById, CITY_PAGES, REGION_PAGES, regionId, cityId, PLACES_INDEX } from '../lib/pages';
+import { helpers, SOURCES, table } from '../lib/helpers';
+import { KIT } from '../lib/kit';
+import { regionRef, townRef, townsOf, townLabel, CLIMATE_META, P } from '../lib/data';
+import { day, num } from '../lib/fmt';
+import { articleSchema, faqSchema, breadcrumbSchema, webPageSchema, webApplicationSchema } from '../lib/seo';
+import { AUTHOR_NAME, LAST_UPDATED } from '../data/site-config';
+import type { RegionDef, CityDef } from '../lib/page-types';
+interface Props { region?: RegionDef; city?: CityDef }
+const { region, city } = Astro.props;
+const def = (region ?? city)!;
+const lang = 'en';
+const ui = t(lang);
+const R = regionRef(region ? region.slug : city!.region);
+const town = region ? townRef(R.slug, R.default) : townRef(city!.region, city!.slug);
+const F = KIT.facts(town.region, town.slug);
+const id = region ? regionId(R.slug) : cityId(R.slug, town.slug);
+const path = route(id, lang);
+const where = region ? R.name : town.name;
+const h1 = `Northern lights in ${where}: tonight’s chance`;
+const hasRegion = REGION_PAGES.some((x) => x.slug === R.slug);
+const crumbs = [{ label: 'By place', href: route(PLACES_INDEX, lang) }, ...(city && hasRegion ? [{ label: R.name, href: route(regionId(R.slug), lang) }] : []), { label: where }];
+const jsonLd = [webApplicationSchema({ name: h1, description: def.description, path, lang }), articleSchema({ title: h1, description: def.description, path, lang }), webPageSchema({ name: h1, description: def.description, path, lang }),
+  breadcrumbSchema([{ name: ui.breadcrumbHome, path: route('home', lang) }, { name: 'By place', path: route(PLACES_INDEX, lang) }, ...(city && hasRegion ? [{ name: R.name, path: route(regionId(R.slug), lang) }] : []), { name: where, path }])];
+if (def.faqs.length) jsonLd.push(faqSchema(def.faqs, lang));
+const card = (rid: string) => pageById(rid)?.card ?? (rid.startsWith('region:') || rid.startsWith('city:') ? 'Kp needed, dark hours and tonight’s answer' : '');
+const related = def.related.filter((r) => ROUTES.some((x) => x.id === r)).map((r) => ({ href: route(r, lang), name: label(r), description: card(r) }));
+const sources = [...(def.extraSources ?? []), ...['swpc_tips', 'swpc_scales', 'swpc_ovation', 'aacgm', 'nasa_power', 'nws_api'].map((k) => ({ name: SOURCES[k].label, url: SOURCES[k].url }))];
+const parts = def.body(helpers()).split(/<!--mini:([A-Za-z0-9_-]+)(?:\|([A-Za-z0-9+/=]+))?-->/);
+const decode = (b?: string) => (b ? Buffer.from(b, 'base64').toString('utf8') : undefined);
+const months = KIT.monthly(town.region, town.slug);
+const best = KIT.bestMonths(town.region, town.slug, 1)[0];
+const linkTown = (r: string, s: string) => (CITY_PAGES.some((c) => c.region === r && c.slug === s) ? route(cityId(r, s), lang) : null);
+const ladder = KIT.ladder(R.slug).filter((f) => region || f.town.slug !== town.slug || true).map((f) => { const href = linkTown(f.town.region, f.town.slug); const nm = f.town.slug === town.slug && city ? `<strong>${f.town.name}</strong>` : href ? `<a href="${href}">${f.town.name}</a>` : f.town.name; return [nm, `${num(f.mlat, 1)}°`, KIT.kp(f.need), KIT.kp(f.overhead), KIT.gName(f.g)]; });
+const monthRows = months.map((m) => [m.name, m.kind === 'never' ? 'none' : m.kind === 'always' ? '24 h' : `${num(m.hours, 1)} h`, m.start ? `${m.start} to ${m.end}` : m.kind === 'always' ? 'all day' : '–', `${num(m.cloud, 0)}%`, `${num(m.clearDark, 1)} h`]);
+const cityLinks = CITY_PAGES.filter((c) => c.region === R.slug && (!city || c.slug !== city.slug));
+---
+<PageLayout title={def.title} description={def.description} lang={lang} jsonLd={jsonLd} faqs={def.faqs} related={related} sources={sources} breadcrumbs={crumbs}>
+  <article>
+    <header class="mb-4">
+      <p class="text-xs font-semibold uppercase tracking-wide text-accent-700 sm:text-sm">{region ? `${R.name} · ${townsOf(R.slug).length} towns compared` : `${townLabel(town)} · magnetic latitude ${num(F.mlat, 1)}°`}</p>
+      <h1 class="mt-1 font-serif text-[1.75rem] font-bold text-navy-900 max-sm:leading-tight sm:text-3xl md:text-4xl">{h1}</h1>
+      <p class="mt-2 text-base text-navy-700 sm:text-lg">{def.intro}</p>
+    </header>
+    <div data-outil class="mb-4"><Tool mode="tonight" place={`${town.region}/${town.slug}`} idPrefix={`${town.slug.slice(0, 5)}t`} /></div>
+    <p class="mb-6 text-sm text-navy-600">Rules checked <time datetime={LAST_UPDATED}>{day(LAST_UPDATED)}</time> · {ui.reviewedBy} <a href={route('about', lang)} class="underline hover:text-navy-900">{AUTHOR_NAME}</a> · <a href={route('method', lang)} class="underline hover:text-navy-900">{label('method')}</a></p>
+    <dl data-chrome class="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
+      <div class="rounded-lg border border-navy-200 p-3"><dt class="text-xs text-navy-600">Kp to see it from {town.name}</dt><dd class="tabular-nums text-xl font-bold text-navy-900">{KIT.kp(F.need)}</dd></div>
+      <div class="rounded-lg border border-navy-200 p-3"><dt class="text-xs text-navy-600">Storm level needed</dt><dd class="text-base font-semibold text-navy-900">{KIT.gName(F.g)}</dd></div>
+      <div class="rounded-lg border border-navy-200 p-3"><dt class="text-xs text-navy-600">Kp for aurora overhead</dt><dd class="tabular-nums text-xl font-bold text-navy-900">{KIT.kp(F.overhead)}</dd></div>
+      <div class="rounded-lg border border-navy-200 p-3"><dt class="text-xs text-navy-600">Most clear dark hours</dt><dd class="text-base font-semibold text-navy-900">{best.name}</dd></div>
+    </dl>
+    <Clamp text={def.resume} lang={lang} id={`clamp-${id.replace(/[^a-z0-9]/g, '-')}`} class="mb-8" />
+    <div class="prose prose-slate max-w-none prose-headings:font-serif">
+      {parts.map((p, i) => i % 3 === 0 ? <Fragment set:html={p ?? ''} /> : i % 3 === 1 ? <MiniSim client:load kind={p} arg={decode(parts[i + 1])} href={route('home', lang)} /> : null)}
+    </div>
+    <section data-chrome class="mt-10">
+      <h2 class="font-serif text-2xl font-bold text-navy-900">{region ? `Kp needed across ${R.name}` : `Kp needed around ${town.name}`}</h2>
+      <Fragment set:html={table(['Town', 'Magnetic latitude', 'Kp to see it', 'Kp overhead', 'Storm level'], ladder, `AACGM-v2 magnetic latitude at ${P.method.aacgmAltKm} km. Kp to see it: southern edge of visibility from the SWPC oval rule (Kp 0 to 5) and the NOAA G scale (Kp 6 to 9).`, ['l', 'r', 'r', 'r', 'l'])} />
+      <h2 class="mt-10 font-serif text-2xl font-bold text-navy-900">Darkness and clouds by month in {town.name}</h2>
+      <Fragment set:html={table(['Month', 'Dark hours', 'Dark sky, 15th', 'Mean cloud', 'Clear dark hours'], monthRows, `Sun 18° below the horizon on the 15th of each month of ${KIT.REF_YEAR}, local time (${town.tz}); cloud amount: ${CLIMATE_META.source}.`, ['l', 'r', 'l', 'r', 'r'])} />
+      {cityLinks.length > 0 && (<><h2 class="mt-10 font-serif text-2xl font-bold text-navy-900">{city ? `Other cities in ${R.name}` : `City pages in ${R.name}`}</h2>
+        <ul class="mt-3 flex flex-wrap gap-x-5 gap-y-1 text-sm">{cityLinks.map((c) => <li><a class="text-accent-700 underline-offset-2 hover:underline" href={route(cityId(c.region, c.slug), lang)}>{townRef(c.region, c.slug).name}</a></li>)}</ul></>)}
+    </section>
+  </article>
+</PageLayout>
