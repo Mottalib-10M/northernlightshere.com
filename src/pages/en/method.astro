@@ -14,7 +14,7 @@ const src = (k: string, t?: string) => `<a href="${SOURCES[k].url}" target="_bla
 const line = M.viewLine.map(([k, lat]) => [`Kp ${k}`, `${lat}°`, k <= 5 ? 'SWPC oval rule' : `NOAA scale, G${k - 4}`]);
 const ex = K.facts('illinois', 'chicago');
 const exm = K.monthly('illinois', 'chicago');
-const title = 'Aurora Forecast Method 2026: Kp, OVATION, Clouds and Darkness';
+const title = 'Aurora Forecast Method 2026: Kp, OVATION, Clouds, Darkness';
 const description = 'How Aurora Tonight turns 2026 SWPC Kp and OVATION data, NWS sky cover and the Sun’s position into a yes, maybe or no per town: every rule, source and limit.';
 const ownRules = [
   [`Sky reach`, `${M.skyReachKm} km`, `Half the ${P.method.swpcMaxViewKm} km SWPC gives as the best case; a 100 km high border at that distance stands about ${K.num(K.elevationOf(P.method.auroraBottomKm, M.skyReachKm), 0)}° up.`],

@@ -17,7 +17,7 @@ export default defineRegion({
   faqs: [
     { q: 'Can you see the northern lights in Massachusetts?', a: `Yes, during strong storms of about Kp ${K.kp(pf.need)} to ${K.kp(bn.need)}, from a dark place with a clear view to the north. Many people across the state saw the aurora during the G5 storm of May 2024. On ordinary active nights, Kp 4 or 5, it stays below the Massachusetts horizon.` },
     { q: 'Where in Massachusetts is darkest for aurora watching?', a: 'The western and north-central hills: the Berkshires around Pittsfield and the hill towns along the Vermont line, and the forested country around the Quabbin Reservoir. A summit or an open field with a northern view is better than a valley floor. Boston and its suburbs light the sky too much for a faint display.' },
-    { q: 'What Kp do you need to see the aurora on Cape Cod?', a: `About Kp ${K.kp(bn.need)}, a strong ${K.gName(bn.g)} storm, from a beach or a dune with a view north across Cape Cod Bay. The open water helps, but the lights of the South Shore and Boston sit on that northern horizon, so the outer Cape, farther from them, is darker.` },
+    { q: 'What Kp do you need to see the aurora on Cape Cod, Massachusetts?', a: `About Kp ${K.kp(bn.need)}, a strong ${K.gName(bn.g)} storm, from a beach or a dune with a view north across Cape Cod Bay. The open water helps, but the lights of the South Shore and Boston sit on that northern horizon, so the outer Cape, farther from them, is darker.` },
   ],
   body: (h) => `
 <h2>A state at the G3 line</h2>
@@ -25,6 +25,8 @@ export default defineRegion({
 <p>${h.mini('kpNeed', { place: 'massachusetts/pittsfield', region: 'massachusetts' })}</p>
 <h2>West is dark, east is bright</h2>
 <p>The Berkshires and the hill towns of western and north-central Massachusetts are the darkest part of the state. Ridges such as those around Mount Greylock and the open farmland of the upper Connecticut valley give views to the north without the glow of big cities. The country around the Quabbin Reservoir, a large protected watershed in the center of the state, is another dark zone close to Worcester and Springfield. East of Interstate 495, the Boston metro area lights the sky in every direction; a northern horizon there is never truly dark.</p>
+<h2>When the storm comes in daylight</h2>
+<p>Many strong storms peak while it is day in New England, and the aurora is invisible however high the Kp. A storm that starts in the afternoon can still be strong after dark, or it can fade. The hour strip of the tool rates each hour of the coming night with the Kp of its three-hour block, so it shows at a glance whether the forecast peak falls in the evening, in the middle of the night or outside the dark window altogether.</p>
 <h2>Coastal nights</h2>
 <p>On the coast, the sea offers dark horizons to the east and south, but the aurora is in the north, and the north shore of Massachusetts Bay faces the wrong way. Cape Cod's bay side looks north across the water toward the lights of the South Shore. Coastal fog and low cloud are frequent in late spring and early summer. The ${h.a('city:massachusetts/boston', 'Boston page')} details the city's options, and the ${h.a('region:new-hampshire', 'New Hampshire page')} the closest darker country to the north.</p>`,
   related: ['city:massachusetts/boston', 'region:new-hampshire', 'region:vermont', 'city:new-york/new-york-city', 'geomagnetic-storm-scale'],

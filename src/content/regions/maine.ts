@@ -12,7 +12,7 @@ const best = K.bestMonths('maine', 'caribou', 3);
 export default defineRegion({
   slug: 'maine',
   title: 'Northern Lights Maine 2026: Tonight’s Odds, Kp by Town',
-  description: `Northern lights in Maine in 2026: tonight's yes, maybe or no for your town, Kp ${K.kp(ca.need)} needed in Caribou and ${K.kp(po.need)} in Portland, and the dark north woods.`,
+  description: `Northern lights in Maine in 2026: tonight's yes, maybe or no for your town, Kp ${K.kp(ca.need)} needed in Caribou and ${K.kp(po.need)} in Portland, and the dark skies of the north woods.`,
   intro: 'NOAA names Maine at the first level of its storm scale; Aroostook County, at the top of the state, is where that holds best.',
   resume: `Maine is one of the two places NOAA's storm scale names at its first level: at G1, a Kp 5 storm, aurora is commonly visible at high latitudes such as northern Michigan and Maine. The site's view line is more cautious. In the AACGM model Caribou, in Aroostook County, sits at ${K.num(ca.mlat, 1)} degrees magnetic latitude and needs a planetary Kp of about ${K.kp(ca.need)}, Presque Isle ${K.kp(pi.need)}, Bangor ${K.kp(ba.need)}, Augusta ${K.kp(au.need)} and Portland ${K.kp(po.need)}. The difference is a matter of how far above the horizon a display has to rise to be noticed; on a G1 night a faint glow can show low in the north of Aroostook from a very dark spot. Caribou's NASA POWER cloud amount ranges from ${K.num(ce.clearest.cloud, 0)}% in ${ce.clearest.name} to ${K.num(ce.cloudiest.cloud, 0)}% in ${ce.cloudiest.name}; its months with the most clear dark hours are ${K.listOf(best.map((b) => b.name))}. The tool opens on Bangor; type your town or ZIP code.`,
   faqs: [
