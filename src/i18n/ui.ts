@@ -1,6 +1,6 @@
 import type { Locale } from './routes';
 const en = {
-  updatedOn: 'Method and data checked on', editorialPolicy: 'Editorial policy', contactLabel: 'Contact', reviewedBy: 'Built by',
+  updatedOn: 'Method and data updated on', editorialPolicy: 'Editorial policy', contactLabel: 'Contact', reviewedBy: 'Built by',
   skipToContent: 'Skip to content', mainNav: 'Main navigation', breadcrumbLabel: 'Breadcrumb', breadcrumbHome: 'Home', menuOpen: 'Open menu',
   faqTitle: 'Questions sky watchers ask', relatedCalculators: 'Check next', sourcesTitle: 'Data and references behind this page', writtenBy: 'Published by',
   asOf: 'Space weather rules and place data for', lastUpdated: 'reviewed on', footerValidated: 'Live data: NOAA SWPC Kp and OVATION, National Weather Service sky cover',

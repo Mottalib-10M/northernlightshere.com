@@ -35,7 +35,7 @@ const guides = PAGES.filter((p) => p.group === 'guides');
     <p class="mt-2 text-base text-navy-700 sm:text-lg">{x.intro}</p>
   </header>
   <div data-outil><Tool mode="tonight" idPrefix="home" /></div>
-  <p class="mt-3 text-sm text-navy-600">Rules and place data checked <time datetime={LAST_UPDATED}>{day(LAST_UPDATED)}</time> · <a href={route('method', lang)} class="underline">How the answer is built</a> · <a href={route('about', lang)} class="underline">Who publishes this site</a></p>
+  <p class="mt-3 text-sm text-navy-600">Rules and place data updated <time datetime={LAST_UPDATED}>{day(LAST_UPDATED)}</time> · <a href={route('method', lang)} class="underline">How the answer is built</a> · <a href={route('about', lang)} class="underline">Who publishes this site</a></p>
   <Clamp text={x.resume} lang={lang} id="clamp-home" class="my-8" />
   <section class="mb-10" aria-labelledby="ladder">
     <h2 id="ladder" class="font-serif text-2xl font-bold text-navy-900">{x.ladderTitle}</h2>
