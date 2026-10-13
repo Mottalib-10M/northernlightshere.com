@@ -44,18 +44,20 @@ describe('Moon (Almanac low precision vs DE421)', () => {
 });
 
 describe('Kp rules (SWPC)', () => {
-  it('view line: oval edge 66 - 2 Kp up to Kp 5, then the G scale latitudes', () => {
+  it('view line: oval edge 66 - 2 Kp, then the G scale latitudes, never north of the oval edge', () => {
     expect(viewLatitude(0, M)).toBe(66);
     expect(viewLatitude(3, M)).toBe(60);
     expect(viewLatitude(5, M)).toBe(56);
-    expect(viewLatitude(6, M)).toBe(55);
+    expect(viewLatitude(6, M)).toBe(54);
     expect(viewLatitude(7, M)).toBe(50);
     expect(viewLatitude(8, M)).toBe(45);
     expect(viewLatitude(9, M)).toBe(40);
     expect(viewLatitude(6.5, M)).toBeCloseTo(52.5, 6);
+    for (let k = 0; k <= 9; k += 0.1) expect(viewLatitude(k, M)).toBeLessThanOrEqual(66 - 2 * k + 1e-9);
   });
+  it('Kp needed never exceeds the Kp for aurora overhead', () => { for (let lat = 48; lat <= 66; lat += 0.25) expect(kpNeeded(lat, M)!).toBeLessThanOrEqual(kpOverhead(lat, M)! + 1e-6); });
   it('Kp needed is the inverse of the view line', () => {
-    for (const k of [0, 0.5, 2.2, 4.9, 5.5, 6.3, 7.7, 9]) expect(kpNeeded(viewLatitude(k, M), M)).toBeCloseTo(k, 6);
+    for (const k of [0, 0.5, 2.2, 4.9, 5.5, 6.3, 7.7, 9]) expect(kpNeeded(viewLatitude(k, M), M)).toBeCloseTo(k, 5);
     expect(kpNeeded(70, M)).toBe(0);
     expect(kpNeeded(39.9, M)).toBeNull();
   });

@@ -36,8 +36,8 @@ Bruts dans `.cache-raw/` (hors dépôt). Faits SWPC recopiés pour la rédaction
 ## Les règles du verdict
 
 Toutes dans `src/data/params-2026.json > method`, testées dans `tests/engine.test.ts` :
-- **Ligne de visibilité** (Kp → latitude magnétique d'où l'aurore se voit) : Kp 0 à 5 = bord de l'ovale SWPC (66° − 2° par Kp) ;
-  Kp 6 à 9 = latitudes de l'échelle NOAA G (55, 50, 45, 40°). Linéaire entre les points. Kp nécessaire = inverse.
+- **Ligne de visibilité** (Kp → latitude magnétique d’où l’aurore se voit) : à chaque Kp, la plus méridionale de deux lignes, bord de l’ovale SWPC (66° − 2° par Kp) et
+  points de l'échelle NOAA G (Kp 6 à 9 : 55, 50, 45, 40°), linéaires entre eux. Kp nécessaire = inverse (bissection). Conséquence : entre ~53,3° et 56° le Kp nécessaire égale le Kp au zénith.
 - **Kp au zénith** : (66 − latitude magnétique) ÷ 2.
 - **Règles propres au site** (`ownRules`) : portée du ciel 500 km, OVATION 10 % / 5 %, ciel clair ≤ 30 %, coupé ≤ 70 %, marge 1 Kp,
   Lune ≥ 75 % éclairée et ≥ 10° de haut. Chaque heure = min(activité, ciel), plafonnée par l'obscurité et la Lune ; la nuit = meilleure heure,

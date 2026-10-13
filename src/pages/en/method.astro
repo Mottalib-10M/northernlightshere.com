@@ -12,8 +12,8 @@ const M = K.METHOD;
 const P = K.P;
 const src = (k: string, t?: string) => `<a href="${SOURCES[k].url}" target="_blank" rel="nofollow noopener noreferrer">${t ?? SOURCES[k].label}</a>`;
 const line = M.viewLine.map(([k, lat]) => [`Kp ${k}`, `${lat}°`, k <= 5 ? 'SWPC oval rule' : `NOAA scale, G${k - 4}`]);
-const ex = K.facts('wisconsin', 'green-bay');
-const exm = K.monthly('wisconsin', 'green-bay');
+const ex = K.facts('illinois', 'chicago');
+const exm = K.monthly('illinois', 'chicago');
 const title = 'Aurora Forecast Method 2026: Kp, OVATION, Clouds and Darkness';
 const description = 'How Aurora Tonight turns 2026 SWPC Kp and OVATION data, NWS sky cover and the Sun’s position into a yes, maybe or no per town: every rule, source and limit.';
 const ownRules = [
@@ -32,7 +32,7 @@ const ownRules = [
     <h2>1. The magnetic latitude of the place</h2>
     <p>The aurora forms an oval around the magnetic pole, so distance to the aurora is measured in magnetic latitude. We use AACGM-v2, the altitude-adjusted corrected geomagnetic coordinates of Shepherd (2014), built on the International Geomagnetic Reference Field: {PLACES_META.aacgm}. For the {K.TOWNS.length} towns of the site the value is computed exactly; for a ZIP code or coordinates it is interpolated in a grid of one degree from 20° to 80° north, within 0.3° of the exact value in our tests. Town positions are the internal points of the <Fragment set:html={src('census_gazetteer', 'Census Bureau 2024 Gazetteer')} />, except a few large municipalities where the downtown is used; Canadian and British cities use city centre coordinates.</p>
     <h2>2. The Kp a place needs</h2>
-    <p>Two published relationships give the magnetic latitude from which aurora can be seen at each Kp. Up to Kp 5, SWPC's <Fragment set:html={src('swpc_tips', 'Tips on Viewing the Aurora')} />: the equatorward edge of the oval sits near {P.method.ovalEdgeKp0}° at Kp 0 and moves about {P.method.ovalStepPerKp}° per step. From Kp 6 to 9, the <Fragment set:html={src('swpc_scales', 'NOAA Space Weather Scales')} />, which give the typical magnetic latitude down to which aurora has been seen at G2 to G5. Between the points the line is linear; the Kp a place needs is where the line crosses its magnetic latitude.</p>
+    <p>Two published relationships give the magnetic latitude from which aurora can be seen at each Kp. Up to Kp 5, SWPC's <Fragment set:html={src('swpc_tips', 'Tips on Viewing the Aurora')} />: the equatorward edge of the oval sits near {P.method.ovalEdgeKp0}° at Kp 0 and moves about {P.method.ovalStepPerKp}° per step. From Kp 6 to 9, the <Fragment set:html={src('swpc_scales', 'NOAA Space Weather Scales')} />, which give the typical magnetic latitude down to which aurora has been seen at G2 to G5. Between the points the line is linear, and at each Kp it never sits north of the oval edge itself: at Kp 6 the scale's 55° lies north of the 54° edge, so the edge is used until the two lines cross near Kp 6.3. The Kp a place needs is where the line crosses its magnetic latitude.</p>
     <Fragment set:html={table(['Kp', 'Seen down to (magnetic latitude)', 'Source'], line, 'The view line used by every page of the site.', ['l', 'r', 'l'])} />
     <p>The Kp for aurora overhead uses the oval rule alone: (66 − magnetic latitude) ÷ 2. Below Kp 5 the view line is the edge of the oval itself, which is cautious: SWPC also says a bright aurora can be seen from up to {P.method.swpcMaxViewKm} km away from a hilltop with an open view north.</p>
     <h2>3. Darkness and the Moon</h2>
@@ -42,8 +42,8 @@ const ownRules = [
     <h2>5. The rules of the answer</h2>
     <p>Each hour between the end and the start of nautical twilight is rated twice. Activity: the Kp of the hour's three-hour block against the Kp the place needs; for the hour in progress, OVATION can raise it. Sky: the cloud cover of the hour. The hour's answer is the weaker of the two, capped by darkness and the Moon. The night takes its best hourly answer, and the best time is the longest run of hours that reach it. The thresholds are our own choices:</p>
     <Fragment set:html={table(['Rule', 'Value', 'Why'], ownRules, 'Rules chosen by this site, stored in its parameter file and tested.', ['l', 'l', 'l'])} />
-    <h3>Worked example: Green Bay</h3>
-    <p>Green Bay sits at {K.num(ex.mlat, 1)}° magnetic latitude. That is between the Kp 6 point (55°) and the Kp 7 point (50°) of the view line, so the Kp needed is 6 + (55 − {K.num(ex.mlat, 1)}) ÷ 5 = {K.kp(ex.need)}, a {K.gName(ex.g)} storm. On a December night the Sun is 18° down for {K.num(exm[11].hours, 1)} hours. If SWPC forecasts Kp 6.67 for the block 03 to 06 UT, 9 pm to midnight in Green Bay in winter, and the National Weather Service gives 20% sky cover for those hours, each hour is strong and clear: the answer is yes, from 9 pm to midnight. With 50% cover it would be maybe; with Kp 5.33 it would be maybe too, one Kp short; with Kp 4, no.</p>
+    <h3>Worked example: Chicago</h3>
+    <p>Chicago sits at {K.num(ex.mlat, 1)}° magnetic latitude. That is between the Kp 6 point (55°) and the Kp 7 point (50°) of the view line, so the Kp needed is 6 + (55 − {K.num(ex.mlat, 1)}) ÷ 5 = {K.kp(ex.need)}, a {K.gName(ex.g)} storm. On a December night the Sun is 18° down for {K.num(exm[11].hours, 1)} hours. If SWPC forecasts Kp 7.00 for the block 03 to 06 UT, 9 pm to midnight in Chicago in winter, and the National Weather Service gives 20% sky cover for those hours, each hour is strong and clear: the answer is yes, from 9 pm to midnight. With 50% cover it would be maybe; with Kp 6.00 it would be maybe too, less than one Kp short; with Kp 5, no.</p>
     <h2>6. Monthly figures on place pages</h2>
     <p>The darkness table of each place uses the 15th of each month of {K.REF_YEAR}. The cloud amount is the monthly mean of the {CLIMATE_META.source} at the place, and clear dark hours are the dark hours times the share of sky not covered: a long-run average, not a forecast.</p>
     <h2>7. What this method cannot do</h2>

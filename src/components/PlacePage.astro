@@ -70,7 +70,7 @@ const cityLinks = CITY_PAGES.filter((c) => c.region === R.slug && (!city || c.sl
     </div>
     <section data-chrome class="mt-10">
       <h2 class="font-serif text-2xl font-bold text-navy-900">{region ? `Kp needed across ${R.name}` : `Kp needed around ${town.name}`}</h2>
-      <Fragment set:html={table(['Town', 'Magnetic latitude', 'Kp to see it', 'Kp overhead', 'Storm level'], ladder, `AACGM-v2 magnetic latitude at ${P.method.aacgmAltKm} km. Kp to see it: southern edge of visibility from the SWPC oval rule (Kp 0 to 5) and the NOAA G scale (Kp 6 to 9).`, ['l', 'r', 'r', 'r', 'l'])} />
+      <Fragment set:html={table(['Town', 'Magnetic latitude', 'Kp to see it', 'Kp overhead', 'Storm level'], ladder, `AACGM-v2 magnetic latitude at ${P.method.aacgmAltKm} km. Kp to see it: southern edge of visibility, the more southern of the SWPC oval rule and the NOAA G scale latitudes at each Kp (method page).`, ['l', 'r', 'r', 'r', 'l'])} />
       <h2 class="mt-10 font-serif text-2xl font-bold text-navy-900">Darkness and clouds by month in {town.name}</h2>
       <Fragment set:html={table(['Month', 'Dark hours', 'Dark sky, 15th', 'Mean cloud', 'Clear dark hours'], monthRows, `Sun 18° below the horizon on the 15th of each month of ${KIT.REF_YEAR}, local time (${town.tz}); cloud amount: ${CLIMATE_META.source}.`, ['l', 'r', 'l', 'r', 'r'])} />
       {cityLinks.length > 0 && (<><h2 class="mt-10 font-serif text-2xl font-bold text-navy-900">{city ? `Other cities in ${R.name}` : `City pages in ${R.name}`}</h2>

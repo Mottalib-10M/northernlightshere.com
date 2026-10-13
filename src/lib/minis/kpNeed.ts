@@ -15,7 +15,7 @@ export default function kpNeed(arg?: string): MiniSpec {
         ['Magnetic latitude (AACGM)', `${n1(t.mlat)}°`], ['Kp for aurora overhead', over === null ? 'beyond 9' : n1(over)],
         ['Storm level', g === 0 ? 'no storm needed' : gs ? `G${g} ${gs.label}` : 'beyond G5'],
         ['How often that level comes', gs ? `about ${gs.days} days per 11-year cycle` : g === 0 ? 'most active nights' : 'rarer than G5'],
-      ], note: 'View line: SWPC oval rule up to Kp 5, NOAA G scale latitudes from Kp 6 to 9.' };
+      ], note: 'View line: the more southern of the SWPC oval rule and the NOAA G scale latitudes at each Kp.' };
     },
   };
 }

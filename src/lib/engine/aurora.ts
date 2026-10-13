@@ -47,20 +47,26 @@ export function magLatFromGrid(g: Grid, lat: number, lon: number): number | null
 }
 
 // ------------------------------------------------------------------ Kp
-/** Magnetic latitude reached by the view line at a given Kp (linear between the published points). */
-export function viewLatitude(kp: number, m: Method): number {
+/** Published points of the view line, linear between them. */
+function viewPoints(kp: number, m: Method): number {
   const L = m.viewLine;
   if (kp <= L[0][0]) return L[0][1];
   for (let i = 1; i < L.length; i++) if (kp <= L[i][0]) { const [k0, a0] = L[i - 1], [k1, a1] = L[i]; return a0 + ((kp - k0) / (k1 - k0)) * (a1 - a0); }
   return L[L.length - 1][1];
 }
+/** Magnetic latitude down to which aurora is visible at a Kp: the more southern of the published points and of the
+ *  oval edge itself (where the aurora is overhead it is visible too), so the line never sits north of the oval. */
+export function viewLatitude(kp: number, m: Method): number {
+  return Math.min(viewPoints(kp, m), m.ovalEdgeKp0 - m.ovalStepPerKp * Math.max(0, kp));
+}
 
-/** Kp at which aurora becomes visible from a magnetic latitude; null beyond Kp 9 (south of the last point). */
+/** Kp at which aurora becomes visible from a magnetic latitude (inverse of the view line); null beyond Kp 9. */
 export function kpNeeded(mlat: number, m: Method): number | null {
-  const L = m.viewLine;
-  if (mlat >= L[0][1]) return 0;
-  for (let i = 1; i < L.length; i++) if (mlat >= L[i][1]) { const [k0, a0] = L[i - 1], [k1, a1] = L[i]; return k0 + ((a0 - mlat) / (a0 - a1)) * (k1 - k0); }
-  return null;
+  if (mlat >= viewLatitude(0, m)) return 0;
+  if (mlat < viewLatitude(9, m)) return null;
+  let a = 0, b = 9;
+  for (let i = 0; i < 50; i++) { const c = (a + b) / 2; if (viewLatitude(c, m) > mlat) a = c; else b = c; }
+  return (a + b) / 2;
 }
 
 /** Kp at which the edge of the oval itself (aurora overhead) reaches the place; null beyond Kp 9. */
