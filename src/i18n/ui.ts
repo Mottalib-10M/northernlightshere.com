@@ -9,6 +9,6 @@ const en = {
   footerPopular: 'Northern lights by state and city',
   notFound: 'This address leads nowhere on the site. The forecast below still tells you, for your town, whether the northern lights have a chance tonight, with the Kp you need and the hours of real darkness.',
   readMore: 'Read the full answer',
-  estimate: 'Forecast, not a promise: the Kp forecast is issued for three-hour blocks and storms arrive early, late or not at all; clouds move faster than any forecast. The answer is a rule applied to public data, explained on the method page.',
+  estimate: 'Forecast, not a promise: the Kp forecast is issued for three-hour blocks and storms arrive early, late or not at all; clouds move faster than any forecast. The answer is a rule applied to public data, explained on the method page, and it is for guidance only: it does not replace the official SWPC alerts or your own look at the sky.',
 };
 export function t(_lang: Locale) { return en; }
