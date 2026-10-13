@@ -118,6 +118,13 @@ officielle ou institutionnelle (NPS, parc d'État, DarkSky International, Parks 
 et vérifiée en 200 avec `curl -sL -o /dev/null -w '%{http_code}' -A 'Mozilla/5.0' <url>`. Un fait incertain ne s'écrit pas.
 Jamais de nom d'agence de voyage, de guide privé, d'hôtel ni d'appli. Jamais d'affirmation sur « combien de nuits par an on la voit » sans source.
 
+## Pièges rencontrés (à ne pas refaire)
+
+- **Jamais de mini-simulateur dans un `<p>`** : `<p>${h.mini(...)}</p>` ou un mini au milieu d'un paragraphe fait sortir un `<div>` d'un `<p>` ; le navigateur referme le paragraphe, le DOM ne correspond plus au HTML de React et l'hydratation casse (erreur React 418, invisible au build et aux tests). Le mini se pose entre deux blocs.
+- **Une apostrophe droite dans une chaîne entre apostrophes** (`'Toronto's'`) casse la compilation du fichier, et les tests de ce fichier ne se lancent plus sans bruit : écrire `’` ou utiliser des accents graves.
+- **Un tri `localeCompare` exécuté dans le navigateur** peut différer de Node : les listes des minis sont triées sur une clé sans accents, en ordre des points de code.
+- **Le test « prose » s'arrête au premier lien inconnu** : tant qu'une page liée n'existe pas, son nombre de mots n'est pas mesuré. Recompter une fois toutes les pages écrites.
+
 ## Ton et langue
 
 - Anglais américain, voix humaine, phrases de longueur variable, **le chiffre d'abord**. Les pages canadiennes et britanniques

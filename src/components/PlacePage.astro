@@ -66,7 +66,7 @@ const cityLinks = CITY_PAGES.filter((c) => c.region === R.slug && (!city || c.sl
     </dl>
     <Clamp text={def.resume} lang={lang} id={`clamp-${id.replace(/[^a-z0-9]/g, '-')}`} class="mb-8" />
     <div class="prose prose-slate max-w-none prose-headings:font-serif">
-      {parts.map((p, i) => i % 3 === 0 ? <Fragment set:html={p ?? ''} /> : i % 3 === 1 ? <MiniSim client:load kind={p} arg={decode(parts[i + 1])} href={route('home', lang)} /> : null)}
+      {parts.map((p, i) => i % 3 === 0 ? <Fragment set:html={p ?? ''} /> : i % 3 === 1 ? <div data-chrome><MiniSim client:load kind={p} arg={decode(parts[i + 1])} href={route('home', lang)} /></div> : null)}
     </div>
     <section data-chrome class="mt-10">
       <h2 class="font-serif text-2xl font-bold text-navy-900">{region ? `Kp needed across ${R.name}` : `Kp needed around ${town.name}`}</h2>

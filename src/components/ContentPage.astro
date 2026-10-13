@@ -57,7 +57,7 @@ const modeOf = page.tool === 'places' ? 'tonight' : page.tool;
       </section>
     )}
     <div class="prose prose-slate max-w-none prose-headings:font-serif">
-      {parts.map((p, i) => i % 3 === 0 ? <Fragment set:html={p ?? ''} /> : i % 3 === 1 ? <MiniSim client:load kind={p} arg={decode(parts[i + 1])} href={route('home', lang)} /> : null)}
+      {parts.map((p, i) => i % 3 === 0 ? <Fragment set:html={p ?? ''} /> : i % 3 === 1 ? <div data-chrome><MiniSim client:load kind={p} arg={decode(parts[i + 1])} href={route('home', lang)} /></div> : null)}
     </div>
     {isIndex && (
       <section data-chrome class="mt-10">
