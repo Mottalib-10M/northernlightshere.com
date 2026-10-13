@@ -55,6 +55,10 @@ export default function AuroraTool({ mode, towns, defaultKey, method: M, methodH
   const [clouds, setClouds] = useState<Clouds | null>(null);
   const [cloudErr, setCloudErr] = useState(false);
   const [copied, setCopied] = useState(false);
+  // Phone: while the answer card is below the screen, a bar pinned to the bottom shows it (RECETTE §5, 2026-10-11).
+  const card = useRef<HTMLDivElement>(null);
+  const [below, setBelow] = useState(false);
+  useEffect(() => { const el = card.current; if (!el || typeof IntersectionObserver === 'undefined') return; const io = new IntersectionObserver(([e]) => setBelow(!e.isIntersecting && e.boundingClientRect.top > 0)); io.observe(el); return () => io.disconnect(); }, []);
   const nights = mode === 'dark' ? 30 : 3;
 
   // ---- after the first render: clock, shared link, feeds
@@ -168,7 +172,7 @@ export default function AuroraTool({ mode, towns, defaultKey, method: M, methodH
   const color = tone === 'yes' ? 'text-accent-300' : tone === 'maybe' ? 'text-amber-200' : tone === 'no' ? 'text-slate-200' : 'text-white';
 
   const result = (
-    <div data-resultat aria-live="polite" className="rounded-xl bg-[#0b1a2e] p-4 text-white sm:p-5">
+    <div ref={card} data-resultat aria-live="polite" className="rounded-xl bg-[#0b1a2e] p-4 text-white sm:p-5">
       <p className="text-sm font-medium text-slate-200">{head.label}</p>
       <p className={`tabular-nums mt-1 font-serif text-5xl font-bold ${color}`}>{head.figure}</p>
       {head.sub && <p className="mt-1 text-sm text-slate-100">{head.sub}</p>}
@@ -181,6 +185,13 @@ export default function AuroraTool({ mode, towns, defaultKey, method: M, methodH
         {!embed && <button type="button" onClick={copy} className="text-accent-200 underline hover:text-white">{copied ? 'Link copied' : 'Copy share link'}</button>}
         {place.href && !embed && <a href={place.href} className="text-accent-200 underline hover:text-white">Page for {place.label}</a>}
       </p>
+      {below && (
+        <button type="button" aria-hidden="true" tabIndex={-1} onClick={() => card.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+          className="fixed inset-x-0 bottom-0 z-40 flex items-baseline justify-between gap-3 border-t border-white/20 bg-[#0b1a2e] px-4 py-3 text-left shadow-lg lg:hidden">
+          <span className="text-sm font-medium text-slate-200">{head.label}</span>
+          <span className={`tabular-nums font-serif text-2xl font-bold ${color}`}>{head.figure}</span>
+        </button>
+      )}
     </div>
   );
 
