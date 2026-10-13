@@ -42,7 +42,7 @@ export const HOME = {
     },
     {
       title: 'Where the data comes from',
-      html: `<p>Kp and OVATION come from the public JSON services of the NOAA Space Weather Prediction Center, read by your browser directly. Sky cover comes from api.weather.gov or api.met.no, also read by your browser, with your coordinates rounded. Darkness and the Moon come from astronomical equations run on your device and tested against the JPL DE421 ephemeris. Magnetic latitudes come from the AACGM-v2 model, monthly cloud averages from NASA POWER, and town and ZIP code positions from the Census Bureau's 2024 Gazetteer. Nothing you type is sent to us.</p>`,
+      html: `<p>The first results for this search give a planetary Kp, a map of the whole pole or probabilities by latitude band, and leave the reader to work out what they mean at home. This page does the opposite: one place, one night, one answer with its hours, and every rule written down. Kp and OVATION come from the public JSON services of the NOAA Space Weather Prediction Center, read by your browser directly. Sky cover comes from api.weather.gov or api.met.no, also read by your browser, with your coordinates rounded. Darkness and the Moon come from astronomical equations run on your device and tested against the JPL DE421 ephemeris. Magnetic latitudes come from the AACGM-v2 model, monthly cloud averages from NASA POWER, and town and ZIP code positions from the Census Bureau's 2024 Gazetteer. Nothing you type is sent to us.</p>`,
     },
   ],
   faqs: [
