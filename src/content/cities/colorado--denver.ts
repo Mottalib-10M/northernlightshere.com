@@ -22,7 +22,7 @@ export default defineCity({
   body: (h) => `
 <h2>The Mile High City is far from the oval</h2>
 <p>Altitude does not help with the aurora: what counts is distance from the oval, and Denver, at ${h.num(f.mlat, 1)} degrees magnetic latitude, is far from it. Its threshold of Kp ${h.kp(f.need)} puts it among the harder cities on this site, together with Philadelphia and New York. That has a simple practical consequence. A Denver aurora night is an event, announced by an SWPC watch for a G3 or G4 storm, and worth preparing for: a plan for where to go, a clear northern horizon, and patience.</p>
-<p>${h.mini('darkMonth', { place: 'colorado/denver', month: 11 })}</p>
+${h.mini('darkMonth', { place: 'colorado/denver', month: 11 })}
 <h2>Escaping the light dome</h2>
 <p>The Front Range urban corridor glows from Fort Collins to Colorado Springs, and Denver sits in the middle of it. The northern horizon from the city is lit by its own suburbs. The plains to the east and northeast empty quickly: past the airport and the last subdivisions, the farmland and grassland around Prospect Valley, Keenesburg or the Pawnee Grassland give a dark northern horizon within an hour or so. On the night of a big storm, many people make the same drive, so a county road beats a popular overlook.</p>
 <h2>Red, not green</h2>

@@ -22,7 +22,7 @@ export default defineCity({
 <h2>Hills to the west, plains to the north</h2>
 <p>Rapid City grew along Rapid Creek where it leaves the Black Hills, and the city looks two ways. To the west, the pine-covered hills rise above town; to the north and east, the land drops onto the high plains. For the aurora, which at Rapid City's threshold sits low in the north, the plains side is the one that matters. The country along the highways north toward Belle Fourche or northeast toward the Cheyenne River is sparsely settled, with a nearly flat northern skyline and very little light.</p>
 <p>Badlands National Park, about an hour east, is a well-known stargazing destination, with dark skies over eroded buttes. Its formations face every direction, so a high overlook with an open northern view is the place to wait for a storm there.</p>
-<p>${h.mini('kpNeed', { place: 'south-dakota/rapid-city', region: 'south-dakota' })}</p>
+${h.mini('kpNeed', { place: 'south-dakota/rapid-city', region: 'south-dakota' })}
 <h2>Dry air and Chinook nights</h2>
 <p>The western half of South Dakota is semi-arid, and Rapid City's skies are often clear, with less winter cloud than the eastern cities in NASA POWER averages. Warm downslope winds off the Black Hills can bring mild, clear nights in the middle of winter, with gusts. The National Weather Service forecast used by the tool covers the grid cell of the place you choose, so a site on the plains can differ from the city.</p>
 <h2>Mountain time and the forecast blocks</h2>

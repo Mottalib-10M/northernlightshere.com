@@ -23,7 +23,7 @@ export default defineCity({
   body: (h) => `
 <h2>The great storms only</h2>
 <p>From London the aurora is a rare event, tied to the strongest storms of a solar cycle. The city's threshold of Kp ${h.kp(f.need)} places it with Denver and Philadelphia among the hardest places on this site, and its light dome is among the largest in Europe. The practical sign to watch is a G4 watch or warning, followed on the night by the current Kp estimate climbing past 7 and an OVATION band on the ${h.a('aurora-map', 'live map')} that has moved over Scotland and the North Sea. The Met Office runs a space weather service for the United Kingdom, which issues its own aurora guidance during such events.</p>
-<p>${h.mini('kpNeed', { place: 'uk/london', region: 'uk' })}</p>
+${h.mini('kpNeed', { place: 'uk/london', region: 'uk' })}
 <h2>Where the dark begins</h2>
 <p>Greater London's glow reaches tens of kilometres into the countryside. The South Downs National Park, south of the capital, has been an International Dark Sky Reserve for ten years in 2026, according to the park authority, and its open downland gives very dark skies. For the aurora the direction matters, though: from the Downs, the northern horizon lies over the lights of the Home Counties and London. North of the city, the Chiltern escarpment and the farmland of Bedfordshire and Hertfordshire look north over darker land, which is often the better choice for a storm.</p>
 <h2>Seeing it in the suburbs</h2>

@@ -23,7 +23,7 @@ export default defineCity({
   body: (h) => `
 <h2>To the north coast</h2>
 <p>Belfast sits at the head of Belfast Lough, ringed by hills, and its own lights fill the low northern sky. The real asset of Northern Ireland for the aurora is its north coast, a little over an hour away. From the headlands of the Causeway Coast, between Portrush and Ballycastle, the view north runs across the open sea toward the islands of Scotland, with almost no light on the horizon. A storm that barely reaches the threshold sits low there, and the sea gives the flat skyline it needs.</p>
-<p>${h.mini('darkMonth', { place: 'uk/belfast', month: 12 })}</p>
+${h.mini('darkMonth', { place: 'uk/belfast', month: 12 })}
 <h2>The Antrim plateau and Lough Neagh</h2>
 <p>Between the city and the coast, the Antrim plateau rises in moorland and glens with scattered farms. Its high roads give wide views and much darker skies than the lough shore. Lough Neagh, west of the city, is the largest lake in the British Isles, and its shores are low and dark; the northern horizon there runs over farmland toward the Sperrins. Any of these work on a strong storm night, and the plateau is the quickest to reach from Belfast.</p>
 <h2>What a storm looks like from here</h2>

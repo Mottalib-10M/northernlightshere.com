@@ -22,7 +22,7 @@ export default defineRegion({
   body: (h) => `
 <h2>A state at the G3 line</h2>
 <p>From Pittsfield to Barnstable, Massachusetts spans little more than a degree of magnetic latitude, and its thresholds run from Kp ${h.kp(pf.need)} to ${h.kp(bn.need)}. All of them mean a strong storm. When SWPC issues a watch for G3 conditions, the state is in play; for anything weaker, the drive north into Vermont, New Hampshire or Maine is the realistic option. Those storms usually follow a fast coronal mass ejection one to three days earlier, which leaves time to plan the evening.</p>
-<p>${h.mini('kpNeed', { place: 'massachusetts/pittsfield', region: 'massachusetts' })}</p>
+${h.mini('kpNeed', { place: 'massachusetts/pittsfield', region: 'massachusetts' })}
 <h2>West is dark, east is bright</h2>
 <p>The Berkshires and the hill towns of western and north-central Massachusetts are the darkest part of the state. Ridges such as those around Mount Greylock and the open farmland of the upper Connecticut valley give views to the north without the glow of big cities. The country around the Quabbin Reservoir, a large protected watershed in the center of the state, is another dark zone close to Worcester and Springfield. East of Interstate 495, the Boston metro area lights the sky in every direction; a northern horizon there is never truly dark.</p>
 <h2>When the storm comes in daylight</h2>

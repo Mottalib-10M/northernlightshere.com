@@ -24,7 +24,7 @@ export default defineRegion({
 <h2>Aroostook, the top of New England</h2>
 <p>Aroostook County reaches farther north than Quebec City, and its potato farms and forests are among the darkest inhabited land in the eastern United States. Caribou and Presque Isle need about Kp ${h.kp(ca.need)} on this site's view line, the lowest thresholds of New England. The open farmland around them gives something the rest of the Northeast often lacks: a flat, unobstructed horizon in every direction. A field road a few miles out of town, with no farmyard lights to the north, is all a storm night needs.</p>
 <p>The north woods to the west, around the Allagash and the large lakes, are darker still, though forest closes the horizon except at a lakeshore or a clearing. Roads there are few and many are private logging roads, which makes them hard to reach at night in winter.</p>
-<p>${h.mini('darkMonth', { place: 'maine/caribou', month: 1 })}</p>
+${h.mini('darkMonth', { place: 'maine/caribou', month: 1 })}
 <h2>Why NOAA says G1 and this site says more</h2>
 <p>NOAA's storm scale is a summary of where aurora has been seen, written for the public. This site's line, used for every town, keeps the more southern of two published limits at each Kp, and between Kp 5 and Kp 6 that limit stays close to the edge of the oval itself, which places northern Maine just past the Kp 6 mark. The gap between the two is the uncertainty of the subject: under a perfect sky, with an open northern horizon and dark-adapted eyes, people in Aroostook do see aurora at Kp 5. The tool answers maybe for those nights rather than yes, and the hour strip shows how close each hour comes.</p>
 <h2>The coast and the south</h2>

@@ -24,7 +24,7 @@ export default defineRegion({
 <h2>East river, west river</h2>
 <p>South Dakotans divide their state at the Missouri, and the river also separates two aurora landscapes. East river is farm country with many small towns, lakes left by the glaciers and the larger population of Sioux Falls, Brookings and Watertown. The northeast corner, around Aberdeen and the glacial lakes of the Coteau des Prairies, is the best placed part of the state magnetically, at Kp ${h.kp(ab.need)}. West river is ranch land, with fewer roads, fewer lights and drier air, from the breaks of the Missouri to the Black Hills.</p>
 <p>The thresholds differ by only about ${h.num(sf.need! - ab.need!, 1)} Kp across the state, much less than the difference in sky quality between a farmyard light and a remote pasture. On a storm night the decision is mostly about where the darkness and the clear air are.</p>
-<p>${h.mini('kpNeed', { place: 'south-dakota/aberdeen', region: 'south-dakota' })}</p>
+${h.mini('kpNeed', { place: 'south-dakota/aberdeen', region: 'south-dakota' })}
 <h2>The Missouri reservoirs</h2>
 <p>A string of large reservoirs follows the Missouri through the middle of the state, Lake Oahe above Pierre among them. Their shores face long distances of open water and grassland, and the country around them is very thinly settled. Looking north up a reservoir from a high bank gives the kind of flat, dark horizon that an aurora at the edge of the range requires. Pierre itself is small enough that a few minutes of driving takes you out of its light.</p>
 <h2>What a G2 night looks like here</h2>

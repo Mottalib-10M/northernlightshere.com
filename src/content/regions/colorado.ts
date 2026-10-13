@@ -22,7 +22,7 @@ export default defineRegion({
   body: (h) => `
 <h2>Why only big storms reach Colorado</h2>
 <p>Colorado lies far from the magnetic pole on the aurora's scale. Even Fort Collins, near the Wyoming line, sits at ${h.num(fc.mlat, 1)} degrees magnetic latitude, well south of where the oval usually ends. Seeing the aurora from here takes a storm big enough to push the oval down over the northern states, and then the light reaches Colorado from a few hundred kilometers away. Two things follow. The display sits low in the north, and it is often red: the top of the aurora, above 300 km, is where oxygen glows red, and at a distance it is the part that clears the horizon, as the ${h.a('northern-lights-colors', 'colors guide')} explains.</p>
-<p>${h.mini('kpNeed', { place: 'colorado/fort-collins', region: 'colorado' })}</p>
+${h.mini('kpNeed', { place: 'colorado/fort-collins', region: 'colorado' })}
 <h2>Plains, mountains and the Western Slope</h2>
 <p>The eastern plains are the best ground for a storm night: a flat northern horizon, small towns, dry air. The Pawnee National Grassland, northeast of Fort Collins, is a federal grassland with almost no lights and long views over the prairie. The mountains offer some of the darkest skies in the state, but their valleys face in every direction and their ridges hide the low northern sky. A high pass or an open park, such as North Park around Walden, combines altitude with a wider view. West of the Continental Divide, Grand Junction sits lower on the magnetic scale and needs about Kp ${h.kp(gj.need)}.</p>
 <h2>Reading the watch</h2>

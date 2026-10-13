@@ -23,7 +23,7 @@ export default defineCity({
 <h2>Above the Yellowstone valley</h2>
 <p>Billings spreads along the Yellowstone River beneath a line of sandstone cliffs, the Rimrocks, which rise a few hundred feet above downtown on the north side. For an aurora watcher that is a gift: from the top of the Rims the view runs north over the plains, and the lights of the city fall behind and below. At Kp ${h.kp(f.need)}, the aurora appears as a low arc over that northern horizon, and the extra height helps clear any haze in the valley.</p>
 <p>North of the city the land empties quickly. The ranch country toward Roundup and the Musselshell has few lights, and on a G2 or G3 night it gives a dark, open sky within an hour's drive.</p>
-<p>${h.mini('kpNeed', { place: 'montana/billings', region: 'montana' })}</p>
+${h.mini('kpNeed', { place: 'montana/billings', region: 'montana' })}
 <h2>Weather on the plains</h2>
 <p>Billings sits in the lee of the Beartooth and Absaroka ranges, and Pacific moisture reaches it only after crossing several mountain chains. In NASA POWER averages the cloud amount runs from ${h.num(ce.clearest.cloud, 0)}% in ${ce.clearest.name} to ${h.num(ce.cloudiest.cloud, 0)}% in ${ce.cloudiest.name}. Chinook winds in winter can clear the sky fast and keep it clear for several nights, though they also bring gusts that make standing outside harder. The hour strip of the tool shows how the National Weather Service expects the sky to evolve through the night.</p>
 <h2>Winter nights on the rimrock</h2>

@@ -22,7 +22,7 @@ export default defineCity({
   body: (h) => `
 <h2>Between two lakes</h2>
 <p>Buffalo sits at the eastern tip of Lake Erie, where the Niagara River carries its water north to Lake Ontario. For the aurora, the two lakes play opposite roles. Lake Ontario, to the north, offers what a watcher wants: a flat, dark horizon over water in the direction of the oval. Lake Erie, to the west and southwest, is the source of the clouds. In late autumn and early winter, when the lake is still warm and the air above it cold, lake-effect bands can cover the city for days. That is why ${h.cloudExtremes('new-york', 'buffalo').cloudiest.name} reaches ${h.num(ce.cloudiest.cloud, 0)}% cloud amount in the NASA POWER averages, and why the months with the most clear dark hours are those before the snow season.</p>
-<p>${h.mini('kpNeed', { place: 'new-york/buffalo', region: 'new-york' })}</p>
+${h.mini('kpNeed', { place: 'new-york/buffalo', region: 'new-york' })}
 <h2>Facing Ontario</h2>
 <p>From the south shore of Lake Ontario, the view north crosses about 50 km of water toward the Canadian shore, where the lights of Toronto and its suburbs glow on the horizon to the northwest. A storm aurora sits above that glow; picking a spot that puts the city lights off to one side, toward the east along the lake plain, gives a darker northern sky. The lake plain is farmland and orchards, with few lights between the shore and the Erie Canal towns.</p>
 <h2>Niagara's own light</h2>

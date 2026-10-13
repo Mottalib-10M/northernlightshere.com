@@ -22,7 +22,7 @@ export default defineCity({
   body: (h) => `
 <h2>The view from the Campsies</h2>
 <p>Glasgow fills the Clyde valley, and its glow spreads far across the surrounding hills. The closest escape to the north is the line of the Campsie Fells and the Kilpatrick Hills, a short drive from the city centre. From their slopes the view north crosses the Fintry hills and the Carse of Stirling toward the Highlands, with far fewer lights than the valley behind. On a G2 or G3 night, a lay-by on the Crow Road over the Campsies, or a high point near Fintry, is the classic quick option. Farther north, Loch Lomond and the Trossachs offer genuinely dark skies, though the mountains around the lochs close part of the northern horizon.</p>
-<p>${h.mini('kpNeed', { place: 'uk/glasgow', region: 'uk' })}</p>
+${h.mini('kpNeed', { place: 'uk/glasgow', region: 'uk' })}
 <h2>Galloway, south of the city</h2>
 <p>Galloway Forest Park, about two hours south, became the first dark sky park in the United Kingdom in 2009, as Forestry and Land Scotland describes. Its skies are among the darkest in Britain, which helps with any faint glow, but the aurora sits to the north, toward the Glasgow conurbation's light, so the best spots there look north from high ground in the park. For a storm that is clearly strong, the darkness of Galloway can be worth the extra drive.</p>
 <h2>Clyde coast and the islands</h2>

@@ -22,7 +22,7 @@ export default defineRegion({
   body: (h) => `
 <h2>The Hi-Line and the open prairie</h2>
 <p>East of the Rocky Mountain Front, northern Montana is a wide, high plain with few towns and a northern horizon that runs uninterrupted into Alberta and Saskatchewan. For the aurora, that geometry is ideal. At the edge of a town's range the display sits low, and on the Hi-Line nothing stands in the way. Havre needs about Kp ${h.kp(hv.need)}, which puts it within reach of the G1 storms that NOAA counts by the hundreds per solar cycle. Driving north from Great Falls toward the border buys about ${h.num(gf.need! - hv.need!, 1)} Kp, and it takes the city lights out of the picture.</p>
-<p>${h.mini('kpNeed', { place: 'montana/havre', region: 'montana' })}</p>
+${h.mini('kpNeed', { place: 'montana/havre', region: 'montana' })}
 <h2>West of the divide</h2>
 <p>The western valleys are different country: Missoula, Kalispell and the Flathead sit among ranges that cut off part of the sky, and Pacific air brings more winter cloud than the plains receive. Kalispell's threshold, about Kp ${h.kp(ka.need)}, is still among the better ones of the West, and Flathead Lake opens a long view north from its southern shore. The ${h.a('city:montana/missoula', 'Missoula page')} looks at the valley and its inversions.</p>
 <h2>Glacier and the Rocky Mountain Front</h2>

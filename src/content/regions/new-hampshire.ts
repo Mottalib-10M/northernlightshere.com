@@ -23,7 +23,7 @@ export default defineRegion({
   body: (h) => `
 <h2>North of the notches</h2>
 <p>The White Mountains divide New Hampshire in two. South of them lies the populated Lakes Region and the Merrimack valley; north of them, past the notches that the roads squeeze through, lies the North Country, a land of forest, paper-mill towns and lakes that runs to the Canadian border. Berlin, on the Androscoggin River, needs about Kp ${h.kp(be.need)}; farther north, around the Connecticut Lakes, the threshold falls slightly and the darkness deepens. On a storm night this is the part of the state where the aurora has its best chance against a black horizon.</p>
-<p>${h.mini('kpNeed', { place: 'new-hampshire/berlin', region: 'new-hampshire' })}</p>
+${h.mini('kpNeed', { place: 'new-hampshire/berlin', region: 'new-hampshire' })}
 <h2>Mountains: help and hindrance</h2>
 <p>The mountains offer altitude and dark valleys, but their slopes also close the horizon. An aurora at the edge of a town's range sits within a few degrees of the northern skyline, and from a valley floor in the White Mountains that skyline is a ridge. Summits and high open areas with a northern view, and lakes such as those of the North Country, are better choices than the bottoms of the notches. Weather on the high peaks is severe and changes fast in every season, which makes a lake or a field the safer bet at night.</p>
 <h2>The Connecticut valley</h2>

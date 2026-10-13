@@ -24,7 +24,7 @@ export default defineCity({
   body: (h) => `
 <h2>A city that faces the sunrise</h2>
 <p>Aberdeen's coastline runs north and south, and the city looks east across the North Sea toward Norway. For an aurora watcher that orientation is half useful. The sea is dark and the eastern sky is clear of buildings, but the aurora sits to the north, where the coast itself and the city's northern suburbs fill the view. The fix is to follow the coast north. Past Peterhead the shore curves west at Fraserburgh and begins to face the Moray Firth and the open water beyond, with nothing between the shingle and the northern horizon.</p>
-<p>${h.mini('darkMonth', { place: 'uk/aberdeen', month: 12 })}</p>
+${h.mini('darkMonth', { place: 'uk/aberdeen', month: 12 })}
 <h2>One step across a storm boundary</h2>
 <p>The difference between Aberdeen and Inverness looks tiny on paper, ${h.num(iv.mlat - f.mlat, 1)} degrees of magnetic latitude and about ${h.num(f.need! - iv.need!, 1)} Kp. It matters because it falls across a boundary of the NOAA scale: Inverness can see aurora on a G1 storm, Aberdeen generally needs a G2, and G2 storms are about a third as frequent. Edinburgh, farther south, needs about ${h.num(ed.need! - f.need!, 1)} Kp more again. On a night when the SWPC forecast shows a block right at Kp 5 or 6, the hour by hour answer in the tool can differ between the two northern cities, so it is worth checking both.</p>
 <h2>North along the coast road</h2>

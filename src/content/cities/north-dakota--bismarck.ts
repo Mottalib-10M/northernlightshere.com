@@ -22,7 +22,7 @@ export default defineCity({
   body: (h) => `
 <h2>The view from the Missouri bluffs</h2>
 <p>Bismarck and Mandan face each other across the Missouri, and the river has cut a broad trench through the plains. The bluffs above it, on both banks, are the natural viewpoints for a storm night: from up there the city lights fall away below, and the northern horizon stretches across the Missouri Coteau. Upstream, the river widens into Lake Sakakawea, whose shores northwest of Bismarck are among the darkest places in the central part of the state.</p>
-<p>${h.mini('kpNeed', { place: 'north-dakota/bismarck', region: 'north-dakota' })}</p>
+${h.mini('kpNeed', { place: 'north-dakota/bismarck', region: 'north-dakota' })}
 <h2>A western sky</h2>
 <p>Bismarck is in the Central time zone but far to its west, so its clock runs well ahead of the Sun: solar midnight falls closer to 1 am than to midnight, and the dark window on December 15 runs from ${m[11].start} to ${m[11].end}. The most active hours of the aurora, which SWPC places around local midnight, therefore come later on the clock than in Fargo. The tool's hour strip takes that into account. Weather comes mostly from the west and northwest, and the semi-arid western half of the state is drier than the Red River Valley, though wind is more frequent.</p>
 <h2>Practical notes for a storm night</h2>

@@ -26,7 +26,7 @@ export default defineCity({
 <h2>Sixty degrees north, on the wrong side of the pole</h2>
 <p>Lerwick lies at ${h.num(h.townRef('uk', 'lerwick').lat, 1)} degrees north, almost exactly the latitude of Whitehorse in the Yukon. In magnetic terms the two towns are far apart: Whitehorse is ${h.num(wh.mlat - f.mlat, 1)} degrees higher and needs about ${h.num(f.need! - wh.need!, 1)} Kp less, because the magnetic pole sits over the Canadian Arctic and the auroral oval leans toward North America. Shetland is therefore not under the oval on a quiet night, as northern Canada is, but it sits close enough to its edge that modest activity brings the aurora into view, low over the northern sea at first, then higher as the oval expands.</p>
 <p>That geography also explains why Lerwick does better than the Scottish mainland. Every degree north counts on this side of the Atlantic, and the islands are the last land before open ocean. Looking north from the town, there is nothing but water and the rest of the Shetland archipelago between you and the oval.</p>
-<p>${h.mini('darkMonth', { place: 'uk/lerwick', month: 11 })}</p>
+${h.mini('darkMonth', { place: 'uk/lerwick', month: 11 })}
 <h2>Mirrie Dancers and the simmer dim</h2>
 <p>Shetland has its own words for both sides of the year. The Mirrie Dancers are the northern lights, and the simmer dim is the summer twilight that never quite becomes night. For aurora purposes the simmer dim means a long blank: from ${nd[0]} to ${nd[nd.length - 1]} the sun never sinks 18 degrees below the horizon. The season opens in late August and grows quickly, to ${h.num(m[8].hours, 1)} dark hours by mid-September and ${h.num(m[10].hours, 1)} by mid-November.</p>
 <h2>Waiting for the gap in the cloud</h2>

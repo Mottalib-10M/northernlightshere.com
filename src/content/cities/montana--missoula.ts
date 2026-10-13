@@ -22,7 +22,7 @@ export default defineCity({
 <h2>A city at the bottom of a bowl</h2>
 <p>Missoula grew where the Clark Fork, the Bitterroot and the Blackfoot rivers meet, in a basin that once held Glacial Lake Missoula. The mountains around it are what make the city attractive and what make aurora watching harder. A display at Kp ${h.kp(f.need)} rises only a few degrees above the true horizon, and from most streets the ridges to the north are higher than that. On a strong storm the aurora climbs well above them, but the nights at the threshold are the common ones, and they reward the people who drive.</p>
 <p>The valleys leading north are the natural escape. Highway 93 climbs out of town toward the Mission Valley and Flathead Lake, where the land opens and the northern sky drops close to a flat horizon. The run north also gains a little latitude: Kalispell needs about Kp ${h.kp(h.facts('montana', 'kalispell').need)}.</p>
-<p>${h.mini('darkMonth', { place: 'montana/missoula', month: 8 })}</p>
+${h.mini('darkMonth', { place: 'montana/missoula', month: 8 })}
 <h2>Inversions and smoke</h2>
 <p>In winter, cold air drains into the basin on calm nights and stays under warmer air above, holding haze, fog and low cloud on the valley floor. The tool reads the National Weather Service sky cover for the coordinates you give, so try a point on the ridges or up the valley when town is socked in. In late summer the problem can be wildfire smoke, which dims a faint aurora the way thin cloud does; the cloud forecast does not measure it, so judge by how many stars you see.</p>
 <h2>A university town's habits</h2>

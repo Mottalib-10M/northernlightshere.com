@@ -22,7 +22,7 @@ export default defineRegion({
   body: (h) => `
 <h2>The North Country</h2>
 <p>New York's best aurora ground is the north: the Adirondack Park, the largest protected area in the lower 48, and the St. Lawrence and Champlain valleys that frame it. Plattsburgh, on Lake Champlain, needs about Kp ${h.kp(pl.need)}, and the lake gives a long northern view toward Quebec from its western shore. Watertown, near the eastern end of Lake Ontario, needs about ${h.kp(wt.need)}. Inside the park, summits and lakes give the open horizons that the forested valleys lack, and the darkness is that of a region with very few towns.</p>
-<p>${h.mini('kpNeed', { place: 'new-york/plattsburgh', region: 'new-york' })}</p>
+${h.mini('kpNeed', { place: 'new-york/plattsburgh', region: 'new-york' })}
 <h2>Lakes, snowbelts and clear spells</h2>
 <p>The Great Lakes shape the cloud calendar of the whole western and central part of the state. From November to February, cold air crossing Lake Ontario and Lake Erie builds the lake-effect bands of the Tug Hill and Buffalo snowbelts, and the sky can stay overcast for long stretches. The clearest month in the NASA POWER averages for Syracuse is ${ce.clearest.name}, at ${h.num(ce.clearest.cloud, 0)}% cloud amount. On a storm night in winter, the eastern Adirondacks and the Champlain valley, farther from the lakes, are often clearer than the western cities.</p>
 <h2>Finger Lakes and the Ontario shore</h2>

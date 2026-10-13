@@ -22,7 +22,7 @@ export default defineCity({
   body: (h) => `
 <h2>Strong storms, strong lights</h2>
 <p>Boston combines two handicaps: a magnetic latitude that requires a G3 storm, and one of the larger light domes of the East Coast. Its threshold of Kp ${h.kp(f.need)} puts it close to Philadelphia and New York City among the cities on this site. In practice, the aurora has been seen from the Boston area only on the big nights of a solar cycle, and the best views came from the dark country north and west of the city.</p>
-<p>${h.mini('darkMonth', { place: 'massachusetts/boston', month: 11 })}</p>
+${h.mini('darkMonth', { place: 'massachusetts/boston', month: 11 })}
 <h2>Getting out of the dome</h2>
 <p>The glow of greater Boston extends far beyond Route 128 and Interstate 495. The first truly dark horizons appear in the hills of north-central Massachusetts, around the Quabbin Reservoir and the towns along the New Hampshire line, about an hour or so west. For a weaker storm, the drive north into New Hampshire gains both darkness and a lower threshold: every hour of driving lowers the Kp needed a little, up to about ${h.kp(be.need)} in the North Country.</p>
 <h2>The coast is not the answer</h2>

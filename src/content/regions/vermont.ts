@@ -23,7 +23,7 @@ export default defineRegion({
   body: (h) => `
 <h2>The Northeast Kingdom and the border</h2>
 <p>The three northeastern counties of Vermont, the Northeast Kingdom, are forest, lakes and small farms with very few lights. Newport, on Lake Memphremagog, which stretches north across the Quebec border, has one of the best northern horizons of the state: the lake runs straight toward the oval. Its threshold of Kp ${h.kp(np.need)} is the lowest of the Vermont towns compared here, together with St. Albans. On a G2 night, a lakeshore or a hilltop in the Kingdom gives as good a chance as anywhere in New England south of Maine's north woods.</p>
-<p>${h.mini('kpNeed', { place: 'vermont/newport', region: 'vermont' })}</p>
+${h.mini('kpNeed', { place: 'vermont/newport', region: 'vermont' })}
 <h2>Lake Champlain</h2>
 <p>West of the Green Mountains, the Champlain valley is broader and flatter, with the lake running north into Quebec. From the islands of Grand Isle County or the shore north of Burlington, the view up the lake offers a dark northern horizon over water, while Burlington's lights stay to the south. Across the lake, the Adirondacks rise on the New York side; the ${h.a('region:new-york', 'New York page')} covers Plattsburgh, which shares the same valley.</p>
 <h2>A small state, a narrow range</h2>

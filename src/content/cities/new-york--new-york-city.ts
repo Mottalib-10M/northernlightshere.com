@@ -22,7 +22,7 @@ export default defineCity({
   body: (h) => `
 <h2>A big storm and a long drive</h2>
 <p>New York City is far from the oval: its threshold of Kp ${h.kp(f.need)} is among the highest of the cities on this site, and its light is among the brightest. Both point the same way. When SWPC issues a watch for G3 or G4 conditions, the plan is to be north of the city with a dark northern horizon by the time darkness falls, then to watch the Kp estimate and the OVATION line of the tool through the evening. Every hour of driving north lowers the threshold a little and removes a lot of light: Albany needs about ${h.kp(h.facts('new-york', 'albany').need)}, and the Adirondacks less again.</p>
-<p>${h.mini('darkMonth', { place: 'new-york/new-york-city', month: 11 })}</p>
+${h.mini('darkMonth', { place: 'new-york/new-york-city', month: 11 })}
 <h2>The light dome</h2>
 <p>Seen from the countryside, the metro area is a glowing dome that rises tens of degrees above the horizon, and from inside it a faint red aurora disappears. What matters is where the dome sits relative to the aurora: from the Hudson Highlands or the Catskills, the city glow is to the south and the northern sky can be quite dark. Long Island's north shore faces north across the Sound, but the lights of the Connecticut coast sit on that horizon. Upstate fields and hilltops are the safer bet.</p>
 <h2>Signals to watch on the night</h2>

@@ -23,7 +23,7 @@ export default defineRegion({
   body: (h) => `
 <h2>Closer to the magnetic pole than it looks</h2>
 <p>On a globe, North Dakota is a mid-latitude state, between about 46 and 49 degrees north. On a magnetic map it is the northernmost of the lower 48 after the border strip of Minnesota, because the magnetic pole sits almost due north of it, in the Canadian Arctic. That is why Bismarck, at ${h.num(h.townRef('north-dakota', 'bismarck').lat, 1)} degrees north, needs less Kp than Seattle or Missoula, which lie farther north on the map. Every town in the state is within about ${h.num(di.need! - gf.need!, 1)} Kp of Grand Forks.</p>
-<p>${h.mini('kpNeed', { place: 'north-dakota/minot', region: 'north-dakota' })}</p>
+${h.mini('kpNeed', { place: 'north-dakota/minot', region: 'north-dakota' })}
 <h2>Prairie horizons and small lights</h2>
 <p>The aurora at a town's threshold sits low on the northern horizon, and North Dakota's prairie leaves that horizon open. The Red River Valley in the east is as flat as land gets; the Missouri Coteau and the Badlands in the west have more relief but few lights. The main sources of glow outside the cities are the oil field flares and lights of the Williston Basin in the northwest, which can brighten the sky around Williston, at Kp ${h.kp(wi.need)}, and a long way beyond. Driving away from them, or using a hill to put them below the horizon, helps more than a slightly higher latitude.</p>
 <h2>Eastern valley, western badlands</h2>

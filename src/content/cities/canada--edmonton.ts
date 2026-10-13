@@ -24,7 +24,7 @@ export default defineCity({
 <h2>Aurora without a storm in a million-person city</h2>
 <p>Few cities of Edmonton's size sit this close to the auroral oval. Its threshold of about Kp ${h.kp(f.need)} is lower than what Calgary, Winnipeg or Minneapolis needs, and it is close to the Kp that the SWPC forecast shows on an unremarkable night. The practical question in Edmonton is therefore rarely whether the activity is high enough. It is whether the sky above you is dark: the metro area throws a wide dome of light that hides faint aurora inside the city, while the same display can be obvious from a gravel road a short drive north.</p>
 <p>That threshold also means storms behave differently here. A G1 or G2 night does not just add a glow on the horizon; it can carry the oval past the city to the south, so the light fills the northern half of the sky and sometimes the zenith. In the site's model the oval edge is already overhead at Kp ${h.kp(f.overhead)}, so every step above that moves the brightest band toward the south.</p>
-<p>${h.mini('darkMonth', { place: 'canada/edmonton', month: 9 })}</p>
+${h.mini('darkMonth', { place: 'canada/edmonton', month: 9 })}
 <h2>Parkland horizons and the North Saskatchewan</h2>
 <p>The North Saskatchewan River cuts a deep, wooded valley through the middle of the city, and the land around it is aspen parkland and cropland, gently rolling, with few obstacles to the north. That makes the countryside around Edmonton easy aurora country. Farther west, Jasper National Park, which Parks Canada manages as one of the largest dark sky preserves in the world, offers truly dark skies, at the price of mountain walls that can hide the lowest part of the northern sky.</p>
 <h2>The short season and the long one</h2>

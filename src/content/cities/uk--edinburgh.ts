@@ -23,7 +23,7 @@ export default defineCity({
   body: (h) => `
 <h2>Scotland's capital, magnetically farther south</h2>
 <p>Edinburgh shares its geographic latitude with Moscow and with the southern tip of Alaska's panhandle, yet on the aurora's scale it is closer to Seattle. The reason is the position of the magnetic pole, which lies over Arctic Canada: places on the European side of the globe are farther from it, magnetically, than their latitude suggests. That puts Edinburgh at about Kp ${h.kp(f.need)}, a moderate to strong storm, while Inverness, ${h.num(h.townRef('uk', 'inverness').lat - f.town.lat, 1)} degrees farther north, needs about ${h.kp(iv.need)}. The north of Scotland is where small storms pay off; the Central Belt waits for the bigger ones.</p>
-<p>${h.mini('darkMonth', { place: 'uk/edinburgh', month: 11 })}</p>
+${h.mini('darkMonth', { place: 'uk/edinburgh', month: 11 })}
 <h2>Looking across the Forth</h2>
 <p>The city slopes down to the Firth of Forth, and its northern horizon is the estuary and the coast of Fife beyond it. From the shore west of Leith, at Cramond or around the Forth bridges at South Queensferry, the view north crosses water with the lights of Fife on the far side. East along the coast toward North Berwick, the Forth widens and the far shore recedes, giving a darker northern sky over the sea. The Pentland Hills, just south of the city, give height but look north over Edinburgh's own glow.</p>
 <h2>Summer light and winter cloud</h2>

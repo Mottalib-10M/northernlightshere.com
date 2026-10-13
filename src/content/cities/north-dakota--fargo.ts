@@ -22,7 +22,7 @@ export default defineCity({
   body: (h) => `
 <h2>The bed of Lake Agassiz</h2>
 <p>Fargo sits in the middle of the Red River Valley, which is not a valley in the usual sense but the floor of an ancient glacial lake, Lake Agassiz, one of the flattest landscapes in North America. For aurora watching that flatness is the main local asset. The aurora at Fargo's threshold sits a few degrees above the northern horizon, and in the valley there are no ridges or forests to hide it, only the glow of towns. Ten or fifteen miles of driving north of the metro area are enough to reach dark farmland.</p>
-<p>${h.mini('darkMonth', { place: 'north-dakota/fargo', month: 1 })}</p>
+${h.mini('darkMonth', { place: 'north-dakota/fargo', month: 1 })}
 <h2>Why Fargo beats cities farther north</h2>
 <p>Fargo lies at ${h.num(h.townRef('north-dakota', 'fargo').lat, 1)} degrees north, a little south of Seattle, yet needs about ${h.num(h.facts('washington', 'seattle').need! - f.need!, 1)} Kp less. The reason is the magnetic pole's position, which pulls the auroral oval south over central North America. For the same reason Fargo has the edge over Minneapolis, a few hours southeast. In the hierarchy of this site, only the Canadian border strip, northern Minnesota and Michigan's Upper Peninsula need smaller storms in the lower 48.</p>
 <h2>Fargo and Moorhead after dark</h2>

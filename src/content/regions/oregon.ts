@@ -23,7 +23,7 @@ export default defineRegion({
   body: (h) => `
 <h2>Two climates on either side of the Cascades</h2>
 <p>Oregon's thresholds span less than ${h.num(me.need! - pe.need! + 0.1, 1)} Kp from one corner of the state to another, which is small compared with the gap between a Pacific winter night and a high desert one. The Willamette Valley, where most Oregonians live, collects marine cloud for much of the dark season. Central and eastern Oregon sit in the rain shadow of the Cascades, where the air is drier, the towns are small and the night is dark. The NASA POWER averages show the contrast month by month: in ${cb.clearest.name}, Bend is at ${h.num(cb.clearest.cloud, 0)}% cloud amount against ${h.num(h.monthly('oregon', 'portland')[cb.clearest.month - 1].cloud, 0)}% in Portland in the same month.</p>
-<p>${h.mini('kpNeed', { place: 'oregon/bend', region: 'oregon' })}</p>
+${h.mini('kpNeed', { place: 'oregon/bend', region: 'oregon' })}
 <h2>What a G3 night looks like here</h2>
 <p>When the Kp reaches the threshold of a town, the aurora appears low over the northern horizon, a pale glow with a green or reddish tint that a phone camera brings out. Most Oregon sightings are of that kind. Only around Kp ${h.kp(po.overhead)} does the oval itself reach Portland, which happens in the rarest storms. Above a dark horizon, though, the red light from the upper part of the aurora, more than 300 km high, can stand far above the green and stay visible from much farther south, as the ${h.a('northern-lights-colors', 'colors guide')} explains.</p>
 <h2>Timing a storm from the West Coast</h2>

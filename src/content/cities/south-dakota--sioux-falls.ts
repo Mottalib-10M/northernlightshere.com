@@ -22,7 +22,7 @@ export default defineCity({
   body: (h) => `
 <h2>A southern corner of the aurora map</h2>
 <p>Sioux Falls sits in the far southeastern corner of South Dakota, where the state meets Minnesota and Iowa, and its magnetic latitude is close to that of Madison or Grand Rapids. It needs about ${h.num(f.need! - ab.need!, 1)} Kp more than Aberdeen. That gap is the difference between storms that arrive several times a year near solar maximum and storms that come a few times a year, and it is why a drive north is the standard advice for Sioux Falls residents on a storm night: an hour up Interstate 29 toward Watertown buys part of that gap and leaves the city glow behind.</p>
-<p>${h.mini('darkMonth', { place: 'south-dakota/sioux-falls', month: 10 })}</p>
+${h.mini('darkMonth', { place: 'south-dakota/sioux-falls', month: 10 })}
 <h2>The Big Sioux valley and the farmland</h2>
 <p>The Big Sioux River runs through the city and north along a shallow valley lined with farms. The land is gently rolling, so a rise a few miles out of town gives a long view north over fields, with few lights other than farmsteads and grain elevators. Light from the city spreads into the sky as a dome visible from far away; on a storm night, standing with that dome behind you to the south is what matters. Snow cover in winter brightens the ground under any light and makes the dome larger, one more reason to drive farther in January than in October.</p>
 <h2>Living with a moderate threshold</h2>

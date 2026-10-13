@@ -21,7 +21,7 @@ export default defineRegion({
   body: (h) => `
 <h2>The panhandle and the plain</h2>
 <p>Idaho runs about seven degrees of latitude from the Nevada line to the Canadian border, and from Sandpoint to Pocatello its towns spread over ${h.num(sa.mlat - h.facts('idaho', 'pocatello').mlat, 1)} degrees of magnetic latitude. In Kp, that is the difference between a moderate storm and a strong one. The panhandle, wedged between Washington and Montana, shares the thresholds of Spokane and Kalispell: Sandpoint on Lake Pend Oreille needs Kp ${h.kp(sa.need)}. South of the Salmon River country, the Snake River Plain needs a G3 storm almost everywhere.</p>
-<p>${h.mini('kpNeed', { place: 'idaho/sandpoint', region: 'idaho' })}</p>
+${h.mini('kpNeed', { place: 'idaho/sandpoint', region: 'idaho' })}
 <h2>Dark country</h2>
 <p>Southern Idaho trades latitude for darkness. Craters of the Moon National Monument and Preserve, on the lava fields between Arco and Carey, was designated an International Dark Sky Park in 2017, as the National Park Service announced, and the mountain valleys of central Idaho around Stanley are among the least lit places in the lower 48. On a storm night those skies make a faint aurora easier to see than from a town that sits a little farther north but under its own glow. Mountain horizons are the catch: in the valleys, the northern sky starts ten or twenty degrees up, which hides the low edge of a display. Open plains and high benches do better than canyon floors.</p>
 <h2>Two time zones, one storm</h2>

@@ -23,7 +23,7 @@ export default defineCity({
 <h2>The rain shadow advantage</h2>
 <p>Seattle and Spokane lie at almost the same latitude, ${h.num(h.townRef('washington', 'spokane').lat, 2)} and ${h.num(h.townRef('washington', 'seattle').lat, 2)} degrees north, and their Kp thresholds differ by only ${h.num(se.need! - f.need!, 1)}. What separates them is the Cascade crest. Pacific air drops most of its moisture on the western slopes, and by the time it reaches the Spokane valley it is far drier. The difference shows most in the season that matters: in ${m[8].name}, with ${h.num(m[8].hours, 1)} hours of full darkness on the 15th, Spokane's average cloud amount is ${h.num(m[8].cloud, 0)}%, against ${h.num(h.monthly('washington', 'seattle')[8].cloud, 0)}% in Seattle.</p>
 <p>Winter is a different story. Cold air pools in the valley between storms and holds a lid of low cloud and freezing fog that can outlast a geomagnetic storm. On those nights the forecast for the city and the sky from Mount Spokane or the higher farmland north of town can differ completely.</p>
-<p>${h.mini('kpNeed', { place: 'washington/spokane', region: 'washington' })}</p>
+${h.mini('kpNeed', { place: 'washington/spokane', region: 'washington' })}
 <h2>Smoke season</h2>
 <p>Late summer brings the clearest skies of the Inland Northwest, and in some years the smoke of distant wildfires. Smoke dims faint aurora much as thin cloud does, yet the cloud forecast of the tool does not count it. The quick test is the stars: if the Milky Way is invisible on a moonless night outside town, a faint display at the threshold will be too.</p>
 <h2>Reading a storm forecast from Spokane</h2>

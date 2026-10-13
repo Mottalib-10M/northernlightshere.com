@@ -26,7 +26,7 @@ export default defineCity({
 <p>The flip side of being under the oval is that a very strong storm can carry the brightest light away. During a G4 or G5 storm the oval expands toward the lower 48, and from Fairbanks much of the display sits low in the south. It remains spectacular, but the record shows of those nights are often seen from farther south.</p>
 <h2>Interior weather</h2>
 <p>Fairbanks sits in the Tanana Valley, sheltered by the Alaska Range from the moist Pacific air that clouds over Anchorage and Juneau. In midwinter, cold air pools in the valley under strong inversions: the skies are often clear, and the ice fog that forms in the coldest spells mostly hugs the ground in town, which is a good reason to drive up onto the surrounding hills. Late summer and early autumn are the cloudiest part of the dark season, with ${h.cloudExtremes('alaska', 'fairbanks').cloudiest.name} at the top of the NASA POWER averages.</p>
-<p>${h.mini('darkMonth', { place: 'alaska/fairbanks', month: 3 })}</p>
+${h.mini('darkMonth', { place: 'alaska/fairbanks', month: 3 })}
 <h2>The equinox months</h2>
 <p>SWPC notes a tendency toward larger geomagnetic storms near the equinoxes. In Fairbanks, March combines that tendency with ${h.num(m[2].hours, 1)} hours of full darkness on the 15th and the clearest skies of the year, which is why many visitors plan for it. September offers ${h.num(m[8].hours, 1)} hours and milder nights, with more cloud. For the full picture month by month, see the table below; for the rest of the state, the ${h.a('region:alaska', 'Alaska page')}.</p>`,
   related: ['region:alaska', 'city:alaska/anchorage', 'city:canada/yellowknife', 'city:canada/whitehorse', 'best-time-northern-lights'],

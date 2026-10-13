@@ -24,7 +24,7 @@ export default defineCity({
   body: (h) => `
 <h2>An island lit from shore to shore</h2>
 <p>Montreal occupies an island in the St. Lawrence, densely built and lit from one end to the other, with Mount Royal rising in the middle. That geography leaves no dark corner inside the city. The aurora at Montreal's threshold of about Kp ${h.kp(f.need)} needs to be looked for from off the island, and the direction that pays is north: across the Rivière des Prairies, past Laval and the northern suburbs, the land starts to climb into the Laurentians, a region of forested hills and lakes where the night grows darker the farther you go.</p>
-<p>${h.mini('darkMonth', { place: 'canada/montreal', month: 1 })}</p>
+${h.mini('darkMonth', { place: 'canada/montreal', month: 1 })}
 <h2>Between Ottawa and Quebec City</h2>
 <p>The three cities of the corridor sit close together in magnetic latitude, but not identically. Quebec City, downstream, needs about ${h.num(f.need! - qc.need!, 1)} Kp less than Montreal; Ottawa, upstream, about ${h.num(f.need! - ot.need!, 1)} Kp less. The differences are small but real on a borderline night, when the Kp blocks of the SWPC forecast hover right around the threshold. South of the border, Burlington in Vermont needs about Kp ${h.kp(bu.need)}, which shows how quickly the odds fall away from the St. Lawrence toward New England.</p>
 <p>Montreal shares one trait with Ottawa: the Kp that makes aurora visible and the Kp that brings the oval edge overhead coincide here, so a storm that reaches the city often arrives as a broad display rather than a thin arc on the horizon. It also means a forecast just short of the threshold usually gives nothing at all from the island.</p>

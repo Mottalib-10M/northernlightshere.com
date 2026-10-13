@@ -23,7 +23,7 @@ export default defineCity({
   body: (h) => `
 <h2>Across the river, into the hills</h2>
 <p>Rough, thinly lit country starts at Ottawa's doorstep. The Ottawa River marks the border with Quebec, and on the far bank the land rises into the Gatineau Hills, the southern edge of the Canadian Shield, mostly forest. Gatineau Park, the conservation park of the National Capital Region, covers more than 361 square kilometers of those hills, and one of its sectors is reached directly from downtown Ottawa and Gatineau. For an aurora watcher that means the urban glow can be put to the south within a short drive, with ridges and lakes opening a view north. On the Ontario side, the farmland to the west and south is flatter but closer to the city light.</p>
-<p>${h.mini('kpNeed', { place: 'canada/ottawa', region: 'canada' })}</p>
+${h.mini('kpNeed', { place: 'canada/ottawa', region: 'canada' })}
 <h2>A threshold that arrives all at once</h2>
 <p>Many cities at the edge of the aurora have a long gap between the first faint glow on the horizon and a display overhead. Ottawa does not. Its magnetic latitude puts it in the narrow band where both thresholds meet, about Kp ${h.kp(f.need)}, so the difference between a dull night and a sky full of color can be one step on the Kp scale. That makes the three hour blocks of the SWPC forecast especially relevant here: a block at or above the threshold, during dark hours and under clear sky, is the moment to go. Montreal, ${h.num(f.mlat - mo.mlat, 1)} degrees lower in magnetic latitude, needs about ${h.num(mo.need! - f.need!, 1)} Kp more; Toronto needs ${h.num(to.need! - f.need!, 1)} Kp more.</p>
 <h2>Cold clear spells and grey Decembers</h2>

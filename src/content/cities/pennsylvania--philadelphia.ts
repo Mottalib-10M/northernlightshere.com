@@ -22,7 +22,7 @@ export default defineCity({
   body: (h) => `
 <h2>Waiting for the big ones</h2>
 <p>Philadelphia's threshold, Kp ${h.kp(f.need)}, places it with New York and Denver among the harder cities on this site. Seeing the aurora from here is not a matter of picking a good night in winter, but of being ready for the few storms per cycle that push the oval far enough south. The SWPC watch for a G3 or G4 storm, issued a day or two before a fast coronal mass ejection arrives, is the signal. On the night, the Kp estimate and the OVATION line of the tool confirm whether the storm has actually reached that level.</p>
-<p>${h.mini('kpNeed', { place: 'pennsylvania/philadelphia', region: 'pennsylvania' })}</p>
+${h.mini('kpNeed', { place: 'pennsylvania/philadelphia', region: 'pennsylvania' })}
 <h2>Out of the Delaware Valley glow</h2>
 <p>The Philadelphia metro area runs almost continuously from Wilmington to Trenton, and its light dome is visible from far away. Inside it, a faint red glow in the north has no chance. The distance to darker country is the deciding factor: an hour north, the farmland of upper Bucks County or the hills along the Lehigh offer horizons with far less light; two hours north, the Pocono plateau has forested hilltops with views across country with few towns. The aim is a place where the northern horizon is dark, even if the southern sky still glows from the city.</p>
 <h2>What the camera sees that you do not</h2>
