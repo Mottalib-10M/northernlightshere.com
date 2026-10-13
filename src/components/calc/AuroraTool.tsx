@@ -128,7 +128,7 @@ export default function AuroraTool({ mode, towns, defaultKey, method: M, methodH
   const tzAbbr = tzName(night.nautical.start ?? clock, place.tz);
   const darkLine = (n: Night) => n.astro.kind === 'night' ? `${time(n.astro.start!, place.tz)} to ${time(n.astro.end!, place.tz)}` : n.astro.kind === 'always' ? 'all night (polar night)' : n.nautical.kind !== 'never' ? `no full darkness; twilight ${time(n.nautical.start!, place.tz)} to ${time(n.nautical.end!, place.tz)}` : 'none: the sky stays bright';
   const best = (n: Night) => (n.best ? `${hourLbl(n.best.start, place.tz)} to ${hourLbl(n.best.end, place.tz)} ${tzName(n.best.start, place.tz)}` : '');
-  const why = (n: Night) => n.reasons.filter((r) => REASON[r]).map((r) => REASON[r]);
+  const why = (n: Night) => n.reasons.filter((r) => REASON[r] && !(r === 'twilight' && n.astro.kind !== 'never')).map((r) => REASON[r]);
   const cloudSrc = cloudManual !== null ? 'your choice' : clouds ? (clouds.source === 'nws' ? 'National Weather Service' : 'MET Norway') : cloudErr ? 'unavailable' : 'loading';
 
   const form = (
@@ -145,7 +145,7 @@ export default function AuroraTool({ mode, towns, defaultKey, method: M, methodH
       </div>
       {mode !== 'nights' && <SelectField id={`${p}-night`} label="Which night" value={String(nightIx)} onChange={(v) => setNightIx(Number(v))} options={nightOpts} />}
       {mode !== 'dark' && <SelectField id={`${p}-clouds`} label="Clouds" value={cloudSel} onChange={setCloudSel} options={[{ value: 'live', label: 'Live forecast for this place' }, { value: '10', label: 'Clear sky (10%)' }, { value: '50', label: 'Partly cloudy (50%)' }, { value: '90', label: 'Overcast (90%)' }]} help={`Source: ${cloudSrc}`} />}
-      {mode !== 'dark' && <NumberField id={`${p}-kp`} label="Kp you expect (empty = SWPC forecast)" value={kpManual} onChange={setKpManual} max={9} decimals={1} help={kpErr ? 'The SWPC feed did not answer: type the Kp of the forecast you read.' : 'From 0 (quiet) to 9 (extreme storm).'} />}
+      {mode !== 'dark' && <NumberField id={`${p}-kp`} label="Kp you expect (optional)" value={kpManual} onChange={setKpManual} max={9} decimals={1} help={kpErr ? 'The SWPC feed did not answer: type the Kp of the forecast you read.' : 'Leave empty to use the SWPC forecast. 0 quiet, 9 extreme.'} />}
     </form>
   );
 
