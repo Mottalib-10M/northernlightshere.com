@@ -45,7 +45,7 @@ const modeOf = page.tool === 'places' ? 'tonight' : page.tool;
       <p class="mt-2 text-base text-navy-700 sm:text-lg">{page.intro}</p>
     </header>
     {modeOf && <div data-outil class="mb-4"><Tool mode={modeOf} idPrefix={page.id.slice(0, 6)} /></div>}
-    <p class="mb-6 text-sm text-navy-600">{ui.reviewedBy} <a href={route('about', lang)} class="underline hover:text-navy-900">{AUTHOR_NAME}</a> · rules checked <time datetime={LAST_UPDATED}>{day(LAST_UPDATED)}</time> · <a href={route('method', lang)} class="underline hover:text-navy-900">{label('method')}</a> · <a href={route('editorial', lang)} class="underline hover:text-navy-900">{ui.editorialPolicy}</a></p>
+    <p class="mb-6 text-sm text-navy-600">{ui.reviewedBy} <a href={route('about', lang)} class="underline hover:text-navy-900">{AUTHOR_NAME}</a> · {/* Sans outil en tête, cette ligne précède le mini-simulateur : la date y repousserait le simulateur (RECETTE §8.4) ; elle reste en bas de page. */}{modeOf && <Fragment>rules checked <time datetime={LAST_UPDATED}>{day(LAST_UPDATED)}</time> · </Fragment>}<a href={route('method', lang)} class="underline hover:text-navy-900">{label('method')}</a> · <a href={route('editorial', lang)} class="underline hover:text-navy-900">{ui.editorialPolicy}</a></p>
     <Clamp text={page.resume} lang={lang} id={`clamp-${page.id}`} class="mb-8" />
     {page.mini && <MiniSim client:load kind={page.mini.kind} arg={page.mini.arg === undefined ? undefined : JSON.stringify(page.mini.arg)} href={route('home', lang)} />}
     {isIndex && (
