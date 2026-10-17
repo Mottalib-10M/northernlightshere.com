@@ -5,7 +5,7 @@
  * par défaut du build (§17.5) ; `data-chrome` : le texte du widget ne compte ni dans les mots ni
  * dans la comparaison entre pages.
  */
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import NumberField from '../ui/NumberField';
 import SelectField from '../ui/SelectField';
 import { getSpec } from '../../lib/mini-specs';
@@ -17,6 +17,11 @@ export default function MiniSim({ kind, lang = 'en', href, arg }: Props) {
   const [v, setV] = useState<Record<string, number>>(() => Object.fromEntries(spec.inputs.map((i) => [i.id, i.def])));
   const out = useMemo(() => spec.run(v), [v, spec]);
   const set = (id: string) => (x: number) => setV((o) => ({ ...o, [id]: x }));
+  // Les heures dépendent des fuseaux du moteur : le serveur de build et le navigateur peuvent différer
+  // d'une heure (erreur React #418 vue sur Yellowknife le 2026-10-17). Le résultat rendu au build est
+  // gardé à l'hydratation, puis remplacé par le calcul du navigateur dès le montage.
+  const [monte, setMonte] = useState(false);
+  useEffect(() => setMonte(true), []);
   return (
     <div data-chrome data-simulateur-secondaire data-mini={kind} className="not-prose rechner-mini my-8 rounded-xl border border-accent-200 bg-white p-4 shadow-sm sm:p-5">
       <p className="text-base font-semibold text-navy-900">{spec.title}</p>
@@ -26,13 +31,13 @@ export default function MiniSim({ kind, lang = 'en', href, arg }: Props) {
             ? <SelectField key={i.id} id={`m-${kind}-${i.id}`} label={i.label} value={String(v[i.id])} onChange={(x) => set(i.id)(Number(x))} options={i.options} />
             : <NumberField key={i.id} id={`m-${kind}-${i.id}`} label={i.label} value={v[i.id]} onChange={set(i.id)} unit={i.unit} max={i.max} decimals={i.decimals} />)}
         </form>
-        <div aria-live="polite" className="rounded-lg bg-navy-50 p-4">
+        <div key={monte ? 'client' : 'build'} aria-live="polite" className="rounded-lg bg-navy-50 p-4" suppressHydrationWarning>
           <p className="text-sm font-medium text-navy-600">{out.head[0]}</p>
-          <p className="tabular-nums mt-1 text-3xl font-bold text-navy-900">{out.head[1]}</p>
+          <p className="tabular-nums mt-1 text-3xl font-bold text-navy-900" suppressHydrationWarning>{out.head[1]}</p>
           <table className="mt-3 w-full text-sm"><tbody className="divide-y divide-navy-200">
-            {out.rows.map(([l, x]) => <tr key={l}><td className="py-1.5 pr-3 text-navy-600">{l}</td><td className="tabular-nums py-1.5 text-right text-navy-900">{x}</td></tr>)}
+            {out.rows.map(([l, x]) => <tr key={l}><td className="py-1.5 pr-3 text-navy-600">{l}</td><td className="tabular-nums py-1.5 text-right text-navy-900" suppressHydrationWarning>{x}</td></tr>)}
           </tbody></table>
-          {out.note && <p className="mt-2 text-xs text-navy-500">{out.note}</p>}
+          {out.note && <p className="mt-2 text-xs text-navy-500" suppressHydrationWarning>{out.note}</p>}
         </div>
       </div>
       {href && spec.cta && <a href={href} className="mt-4 inline-block text-sm font-medium text-accent-700 hover:underline">{spec.cta} →</a>}
